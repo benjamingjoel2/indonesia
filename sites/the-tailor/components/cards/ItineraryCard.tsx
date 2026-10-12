@@ -34,7 +34,7 @@ export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; head
           </Link>
         </H>
         <p className="mt-2 text-sm text-ink-soft">{it.inclusionLine}</p>
-        <ul className="mt-4 space-y-1.5 text-[0.9375rem]">
+        <ul className="mt-4 space-y-1.5 text-[0.8125rem]">
           {it.highlights.slice(0, 4).map((h) => (
             <li key={h} className="flex gap-2">
               <Icon name="check" size={16} className="mt-1 shrink-0 text-lagoon-500" />
@@ -50,7 +50,7 @@ export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; head
             <p className="mt-1 text-xs text-ink-soft">
               ≈ <Price amount={it.priceFrom * 2} /> for two · international flights excluded
             </p>
-            <p className="link-arrow mt-4 text-[0.9375rem]">
+            <p className="link-arrow mt-4 text-[0.8125rem]">
               View itinerary <Icon name="arrow" size={16} />
             </p>
           </div>

@@ -126,7 +126,7 @@ export default async function TripPage({ params }: Props) {
             <p className="mt-4 font-display text-display-sm leading-snug">{it.summary}</p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {it.highlights.map((h) => (
-                <li key={h} className="flex gap-3 text-[0.9375rem]">
+                <li key={h} className="flex gap-3 text-[0.8125rem]">
                   <Icon name="check" size={18} className="mt-0.5 shrink-0 text-lagoon-500" />
                   {h}
                 </li>
@@ -196,7 +196,7 @@ export default async function TripPage({ params }: Props) {
               ).map(([title, items]) => (
                 <div key={title}>
                   <h3 className="eyebrow text-ink-soft">{title}</h3>
-                  <ul className="mt-3 space-y-2 text-[0.9375rem]">
+                  <ul className="mt-3 space-y-2 text-[0.8125rem]">
                     {items.map((i) => (
                       <li key={i} className="flex gap-2">
                         <Icon name="check" size={16} className="mt-1 shrink-0 text-lagoon-500" />
@@ -209,7 +209,7 @@ export default async function TripPage({ params }: Props) {
             </div>
             <div className="mt-10 rounded-sm border border-dashed border-sand-400 p-6">
               <h3 className="eyebrow text-ink-soft">Not included</h3>
-              <ul className="mt-3 grid gap-2 text-[0.9375rem] sm:grid-cols-2">
+              <ul className="mt-3 grid gap-2 text-[0.8125rem] sm:grid-cols-2">
                 {it.excluded.map((i) => (
                   <li key={i} className="flex gap-2">
                     <Icon name="minus" size={16} className="mt-1 shrink-0 text-ink-soft" />
@@ -226,7 +226,7 @@ export default async function TripPage({ params }: Props) {
               {"Rates for *2027*"}
             </Heading>
             <div className="mt-8 overflow-x-auto">
-              <table className="w-full min-w-[30rem] text-left text-[0.9375rem]">
+              <table className="w-full min-w-[30rem] text-left text-[0.8125rem]">
                 <caption className="sr-only">Seasonal prices per person, sharing</caption>
                 <thead>
                   <tr className="border-b border-jungle-900 text-sm text-ink-soft">

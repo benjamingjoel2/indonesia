@@ -27,16 +27,26 @@
   --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --text-display-2xl: clamp(2.75rem, 1.6rem + 4.6vw, 5.75rem);
+  --text-display-2xl: clamp(2.625rem, 1.475rem + 4.6vw, 5.625rem);
   --text-display-2xl--line-height: 1.02;
-  --text-display-xl: clamp(2.25rem, 1.5rem + 3vw, 4.25rem);
+  --text-display-xl: clamp(2.125rem, 1.375rem + 3vw, 4.125rem);
   --text-display-xl--line-height: 1.05;
-  --text-display-lg: clamp(1.875rem, 1.4rem + 1.9vw, 3.125rem);
+  --text-display-lg: clamp(1.75rem, 1.275rem + 1.9vw, 3rem);
   --text-display-lg--line-height: 1.08;
-  --text-display-md: clamp(1.5rem, 1.25rem + 1vw, 2.125rem);
+  --text-display-md: clamp(1.375rem, 1.125rem + 1vw, 2rem);
   --text-display-md--line-height: 1.15;
-  --text-display-sm: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --text-display-sm: clamp(1.125rem, 1.025rem + 0.4vw, 1.375rem);
   --text-display-sm--line-height: 1.2;
+
+  /* Text scale: 2px below Tailwind's defaults (1px for xs/sm, to stay legible). */
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.375rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2.125rem;
 
   --radius-sm: 2px;
   --radius-md: 4px;
@@ -66,6 +76,7 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: var(--text-base);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -104,7 +115,7 @@
 
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   line-height: 1rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -124,7 +135,7 @@
 
 /* Long-form article typography (blog, legal) */
 @utility prose-edit {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   line-height: 1.75;
   color: var(--color-ink);
   & h2 {
@@ -168,7 +179,7 @@
     border-left: 2px solid var(--color-lagoon-500);
     padding-left: 1.25rem;
     font-family: var(--font-display);
-    font-size: 1.375rem;
+    font-size: 1.25rem;
     margin: 2rem 0;
   }
 }

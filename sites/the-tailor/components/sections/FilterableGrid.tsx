@@ -174,7 +174,7 @@ export function FilterableGrid({
               <button
                 type="button"
                 onClick={() => setShown((n) => n + pageSize)}
-                className="inline-flex min-h-11 items-center rounded-sm border border-jungle-900 px-6 text-[0.9375rem] font-medium hover:bg-jungle-900 hover:text-sand-50"
+                className="inline-flex min-h-11 items-center rounded-sm border border-jungle-900 px-6 text-[0.8125rem] font-medium hover:bg-jungle-900 hover:text-sand-50"
               >
                 Show more
               </button>

@@ -5,7 +5,7 @@ import { Icon } from "./Icon";
 type Variant = "primary" | "secondary" | "ghost" | "light" | "outline-light";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-[0.9375rem] font-medium leading-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 min-h-11";
+  "inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-[0.8125rem] font-medium leading-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 min-h-11";
 
 const variants: Record<Variant, string> = {
   primary: "bg-jungle-900 text-sand-50 hover:bg-jungle-700",

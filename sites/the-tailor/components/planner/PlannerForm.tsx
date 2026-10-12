@@ -292,7 +292,7 @@ export function PlannerForm({
                         </span>
                       </span>
                       <span className="block p-3">
-                        <span className="block font-display text-[1.0625rem] leading-tight">{r.label}</span>
+                        <span className="block font-display text-[0.9375rem] leading-tight">{r.label}</span>
                         <span className="mt-1 block text-xs leading-snug text-ink-soft">{r.text}</span>
                       </span>
                     </label>
@@ -585,7 +585,7 @@ export function PlannerForm({
 /* ---------- Pieces ---------- */
 
 const inputClass =
-  "h-12 w-full rounded-sm border border-sand-400 bg-paper px-3.5 text-[0.9375rem] aria-[invalid=true]:border-clay-500";
+  "h-12 w-full rounded-sm border border-sand-400 bg-paper px-3.5 text-[0.8125rem] aria-[invalid=true]:border-clay-500";
 
 function Progress({ step }: { step: number }) {
   return (
@@ -681,7 +681,7 @@ function Pill({
 }) {
   return (
     <label
-      className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-5 text-[0.9375rem] has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lagoon-500 ${
+      className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-5 text-[0.8125rem] has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lagoon-500 ${
         checked ? "border-jungle-900 bg-jungle-900 text-sand-50" : "border-sand-400 hover:border-jungle-900"
       }`}
     >
