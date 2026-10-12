@@ -19,7 +19,7 @@ export function TestimonialQuote({ t, large = false }: { t: Testimonial; large?:
           </span>
         )}
       </div>
-      <blockquote className={`mt-5 font-display ${large ? "text-display-md font-light" : "text-xl"} leading-snug`}>
+      <blockquote className={`mt-5 font-display ${large ? "text-display-sm md:text-[1.75rem]" : "text-xl"} leading-snug`}>
         <p>“{t.quote}”</p>
       </blockquote>
       <figcaption className="mt-auto pt-6 text-sm">
