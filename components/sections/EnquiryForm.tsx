@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useId, useState } from "react";
+import { postJson } from "@/lib/preview";
 import { Icon } from "@/components/ui/Icon";
 
 type Status = "idle" | "sending" | "done" | "error";
@@ -29,24 +30,24 @@ export function EnquiryForm({
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const data = Object.fromEntries(f.entries()) as Record<string, string>;
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     const errs: Record<string, string> = {};
     if ((data.name ?? "").trim().length < 2) errs.name = "Please tell us your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email ?? "")) errs.email = "Enter a valid email address.";
     setErrors(errs);
     if (Object.keys(errs).length) {
-      e.currentTarget.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
+      // Wait for the re-render that marks the invalid fields.
+      requestAnimationFrame(() => form.querySelector<HTMLElement>("[aria-invalid='true']")?.focus());
       return;
     }
     setStatus("sending");
     try {
-      const res = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, trip: tripTitle ?? "", source: tripSlug ? `/trips/${tripSlug}` : "contact" }),
+      await postJson("/api/enquiry", {
+        ...data,
+        trip: tripTitle ?? "",
+        source: tripSlug ? `/trips/${tripSlug}` : "contact",
       });
-      if (!res.ok) throw new Error();
       setStatus("done");
     } catch {
       setStatus("error");
