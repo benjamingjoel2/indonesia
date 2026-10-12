@@ -17,9 +17,12 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
   variable: "--font-fraunces",
   display: "swap",
+  // Not preloaded: the display face is large and would compete with the hero image.
+  // Size-adjusted fallback metrics keep the swap free of layout shift.
+  preload: false,
 });
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });

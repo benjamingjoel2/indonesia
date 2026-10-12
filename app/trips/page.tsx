@@ -20,7 +20,8 @@ export default function TripsPage() {
         intro="Every itinerary here is a starting point, priced honestly per person. Your specialist will reshape the route, the pace and the stays around you."
         crumbs={[{ label: "Trips", href: "/trips" }]}
       />
-      <section aria-label="All trips" className="container-edit py-14 md:py-20">
+      <section aria-labelledby="list-title" className="container-edit py-14 md:py-20">
+        <h2 id="list-title" className="sr-only">All trips</h2>
         <TripsListing trips={getItineraries()} />
       </section>
       <FinalCta heading="Don't see quite the *right* trip?" text="Most of our journeys are designed from scratch. Tell us what you have in mind." />

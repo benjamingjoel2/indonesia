@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { plannerSchema } from "@/lib/planner";
+import { plannerSchema } from "@/lib/planner-schema";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);

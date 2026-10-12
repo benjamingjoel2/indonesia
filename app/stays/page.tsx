@@ -20,7 +20,8 @@ export default function StaysPage() {
         intro="Clifftop villas, reef-side lodges and hand-built phinisi. We only recommend places we have stayed in ourselves."
         crumbs={[{ label: "Stays", href: "/stays" }]}
       />
-      <section aria-label="All stays" className="container-edit py-14 md:py-20">
+      <section aria-labelledby="list-title" className="container-edit py-14 md:py-20">
+        <h2 id="list-title" className="sr-only">All stays</h2>
         <StaysListing stays={getStays()} />
       </section>
       <FinalCta />

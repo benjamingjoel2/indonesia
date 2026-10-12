@@ -1,35 +1,8 @@
-import { z } from "zod";
+import type { PlannerData } from "./planner-schema";
 
-/** Shared planner model: used by the client form and validated again in /api/plan. */
-export const plannerSchema = z.object({
-  when: z.object({
-    arrival: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-    nights: z.number().int().min(1).max(50),
-    dateType: z.enum(["exact", "approximate"]),
-    travellerType: z.enum(["first", "experienced"]),
-  }),
-  where: z.object({
-    regions: z.array(z.string()).min(1),
-    specifics: z.string().max(2000),
-  }),
-  budget: z.enum(["value", "premium", "ultra", "unsure"]),
-  who: z.object({
-    adults: z.number().int().min(1).max(10),
-    children: z.number().int().min(0).max(10),
-    childAges: z.array(z.number().int().min(0).max(17)),
-    addOns: z.array(z.enum(["insurance", "intlFlights", "domestic"])),
-  }),
-  contact: z.object({
-    name: z.string().min(2).max(120),
-    email: z.string().email(),
-    phoneCountry: z.string().max(6),
-    phone: z.string().max(20),
-    methods: z.array(z.enum(["email", "whatsapp", "phone"])).min(1),
-    notes: z.string().max(4000),
-  }),
-});
+export type { PlannerData };
 
-export type PlannerData = z.infer<typeof plannerSchema>;
+/** Client planner model; the payload is validated again in /api/plan (see planner-schema.ts). */
 
 /** Form state allows "not chosen yet" values the schema rejects. */
 export interface PlannerDraft {
@@ -90,9 +63,11 @@ export function validateStep(step: number, d: PlannerDraft): Errors {
 }
 
 export function toPayload(d: PlannerDraft): PlannerData {
-  return plannerSchema.parse({
+  // Only called after every step has validated, so the narrowing casts are safe.
+  return {
     ...d,
-    when: { ...d.when },
+    when: { ...d.when, travellerType: d.when.travellerType as PlannerData["when"]["travellerType"] },
+    budget: d.budget as PlannerData["budget"],
     who: { ...d.who, childAges: d.who.childAges.map((a) => a ?? 0) },
-  });
+  };
 }
