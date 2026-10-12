@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useFocusTrap, useScrollLock } from "@/lib/hooks";
+import { navigate } from "@/lib/preview";
 import { searchItems, type SearchItem, type SearchKind } from "@/lib/search";
 import { useUi } from "@/lib/ui-state";
 import { Icon } from "@/components/ui/Icon";
@@ -56,7 +57,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
 
   const go = (item: SearchItem) => {
     closeSearch();
-    router.push(item.href);
+    navigate(item.href, (href) => router.push(href));
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -164,7 +165,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
                           id={optionId(i)}
                           role="option"
                           aria-selected={isActive}
-                          onMouseEnter={() => setActive(i)}
+                          onMouseMove={() => setActive(i)}
                           onClick={() => go(item)}
                           className={`flex cursor-pointer items-center justify-between gap-4 rounded-sm px-3 py-2.5 ${
                             isActive ? "bg-sand-100" : ""

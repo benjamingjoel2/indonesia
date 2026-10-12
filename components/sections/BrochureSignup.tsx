@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useId, useState } from "react";
 import { home } from "@/data/home";
+import { postJson } from "@/lib/preview";
 import { Button } from "@/components/ui/Button";
 import { Heading } from "@/components/ui/Heading";
 import { Icon } from "@/components/ui/Icon";
@@ -26,12 +27,7 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
     setError("");
     setStatus("sending");
     try {
-      const res = await fetch("/api/brochure", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, newsletter, brochure: b.title }),
-      });
-      if (!res.ok) throw new Error();
+      await postJson("/api/brochure", { email, newsletter, brochure: b.title });
       setStatus("done");
     } catch {
       setStatus("error");

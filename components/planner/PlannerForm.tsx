@@ -19,6 +19,7 @@ import {
   type Errors,
   type PlannerDraft,
 } from "@/lib/planner";
+import { postJson } from "@/lib/preview";
 import { readStorage, removeStorage, writeStorage } from "@/lib/storage";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -105,13 +106,7 @@ export function PlannerForm({
     if (Object.keys(e).length) return focusFirstError();
     setStatus("sending");
     try {
-      const res = await fetch("/api/plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(toPayload(draft)),
-      });
-      const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error();
+      const json = await postJson<{ ok: boolean; reference: string }>("/api/plan", toPayload(draft));
       setReference(json.reference);
       removeStorage(STORAGE_KEY);
       setStatus("idle");
