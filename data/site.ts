@@ -1,0 +1,176 @@
+import type { NavGroup, NavLink } from "./types";
+
+/**
+ * Brand, contact details and navigation.
+ * Everything in [square brackets] is a placeholder to replace before launch.
+ */
+export const site = {
+  name: "The Island Edit",
+  shortName: "Island Edit",
+  url: "https://www.theislandedit.com", // [placeholder domain]
+  description:
+    "Tailor-made Indonesia journeys, planned end to end by one dedicated travel specialist. Bali, Komodo, Raja Ampat, Java and beyond.",
+  blurb:
+    "The Island Edit plans private, tailor-made journeys across the Indonesian archipelago. One specialist, from first message to last transfer.",
+  phone: "+62 361 000 0000", // [placeholder]
+  phoneHref: "tel:+623610000000",
+  whatsapp: "6281200000000", // [NUMBER] digits only, used in wa.me links
+  email: "hello@theislandedit.com", // [placeholder]
+  credential: "[Award / credential placeholder] · Licensed Indonesian tour operator",
+  replyPromise: "Replies in as little as 15 minutes",
+  rating: { score: 4.9, count: 640, source: "[Review platform]" },
+  founded: 2011,
+  socials: [
+    { label: "Instagram", href: "https://instagram.com/" },
+    { label: "Facebook", href: "https://facebook.com/" },
+    { label: "YouTube", href: "https://youtube.com/" },
+    { label: "LinkedIn", href: "https://linkedin.com/" },
+  ] satisfies NavLink[],
+  memberships: ["ASITA member", "[Sustainable travel cert.]", "[Industry body]"],
+  promo:
+    "Included on every trip confirmed before 31 March 2027: private airport arrival, a local SIM and 24/7 WhatsApp support from your specialist.",
+} as const;
+
+export const whatsappHref = (text?: string) =>
+  `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+
+/* ---------- Navigation ---------- */
+
+export const destinationsMenu: NavGroup[] = [
+  {
+    title: "Top destinations",
+    links: [
+      { label: "Bali", href: "/bali" },
+      { label: "Komodo & Labuan Bajo", href: "/komodo" },
+      { label: "Raja Ampat", href: "/raja-ampat" },
+      { label: "Yogyakarta", href: "/yogyakarta" },
+      { label: "Lombok & the Gilis", href: "/lombok-gilis" },
+      { label: "Mount Bromo", href: "/mount-bromo" },
+    ],
+  },
+  {
+    title: "Western Indonesia",
+    links: [
+      { label: "Java", href: "/java" },
+      { label: "Sumatra", href: "/sumatra" },
+      { label: "Kalimantan (Borneo)", href: "/kalimantan" },
+      { label: "Jakarta", href: "/jakarta" },
+      { label: "Lake Toba", href: "/lake-toba" },
+    ],
+  },
+  {
+    title: "Eastern Indonesia",
+    links: [
+      { label: "Flores", href: "/flores" },
+      { label: "Sumba", href: "/sumba" },
+      { label: "Sulawesi (Toraja)", href: "/sulawesi" },
+      { label: "Maluku", href: "/maluku" },
+      { label: "Papua", href: "/papua" },
+      { label: "Nusa Penida", href: "/nusa-penida" },
+    ],
+  },
+];
+
+export const experiencesMenu: NavLink[] = [
+  { label: "Diving & snorkeling", href: "/experiences/diving-snorkeling" },
+  { label: "Phinisi liveaboard cruises", href: "/experiences/phinisi-cruises" },
+  { label: "Honeymoons", href: "/experiences/honeymoons" },
+  { label: "Family trips", href: "/experiences/family-trips" },
+  { label: "Volcano treks", href: "/experiences/volcano-treks" },
+  { label: "Orangutan trekking", href: "/experiences/orangutan-trekking" },
+  { label: "Temples & culture", href: "/experiences/temples-culture" },
+  { label: "Surf trips", href: "/experiences/surf-trips" },
+  { label: "Wellness & yoga retreats", href: "/experiences/wellness-retreats" },
+  { label: "Island hopping", href: "/experiences/island-hopping" },
+  { label: "Luxury villas", href: "/experiences/luxury-villas" },
+];
+
+export const aboutMenu: NavGroup[] = [
+  {
+    title: "The company",
+    links: [
+      { label: "Why travel with us", href: "/why-travel-with-us" },
+      { label: "Our story", href: "/about" },
+      { label: "Meet the team", href: "/about#team" },
+      { label: "Sustainability", href: "/sustainability" },
+    ],
+  },
+  {
+    title: "From our guests",
+    links: [
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
+  {
+    title: "Practical",
+    links: [
+      { label: "FAQ", href: "/faq" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+export type MainNavItem =
+  | { label: string; href: string; kind: "link" }
+  | { label: string; href: string; kind: "destinations" }
+  | { label: string; href: string; kind: "experiences" }
+  | { label: string; href: string; kind: "about" };
+
+export const mainNav: MainNavItem[] = [
+  { label: "Destinations", href: "/destinations", kind: "destinations" },
+  { label: "Trips", href: "/trips", kind: "link" },
+  { label: "Experiences", href: "/experiences", kind: "experiences" },
+  { label: "Stays", href: "/stays", kind: "link" },
+  { label: "About", href: "/about", kind: "about" },
+];
+
+/* ---------- Footer ---------- */
+
+export const footerColumns: NavGroup[] = [
+  {
+    title: "Featured trips",
+    links: [
+      { label: "Bali, slow and soulful", href: "/trips/bali-slow-and-soulful" },
+      { label: "Komodo by phinisi", href: "/trips/komodo-by-phinisi" },
+      { label: "Raja Ampat dive escape", href: "/trips/raja-ampat-dive-escape" },
+      { label: "Java & Bali overland", href: "/trips/java-bali-overland" },
+      { label: "All trips", href: "/trips" },
+    ],
+  },
+  {
+    title: "Popular reads",
+    links: [
+      { label: "When to visit Indonesia", href: "/blog/when-to-visit-indonesia" },
+      { label: "Komodo: boat or land?", href: "/blog/komodo-boat-or-land" },
+      { label: "Bali beyond the crowds", href: "/blog/bali-beyond-the-crowds" },
+      { label: "Raja Ampat, a first-timer's guide", href: "/blog/raja-ampat-first-timers-guide" },
+    ],
+  },
+  {
+    title: "About",
+    links: [
+      { label: "Why travel with us", href: "/why-travel-with-us" },
+      { label: "Our story", href: "/about" },
+      { label: "Meet the team", href: "/about#team" },
+      { label: "Sustainability", href: "/sustainability" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Plan your trip", href: "/plan-your-trip" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Blog", href: "/blog" },
+      { label: "Private & bespoke travel", href: "/private-travel" },
+    ],
+  },
+];
+
+export const legalLinks: NavLink[] = [
+  { label: "Terms of use", href: "/legal/terms" },
+  { label: "Privacy policy", href: "/legal/privacy" },
+  { label: "Cookie policy", href: "/legal/cookies" },
+];
