@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 
@@ -117,7 +118,7 @@ export function EnquiryForm({
         </button>
         <p className={`text-xs ${tone === "dark" ? "text-sand-300" : "text-ink-soft"}`}>
           We&apos;ll only use your details to plan your trip. See our{" "}
-          <a href="/legal/privacy" className="underline underline-offset-2">privacy policy</a>.
+          <Link href="/legal/privacy" className="underline underline-offset-2">privacy policy</Link>.
         </p>
         {status === "error" && <p role="alert" className={`w-full text-sm ${errCls}`}>Something went wrong. Please try again.</p>}
       </div>

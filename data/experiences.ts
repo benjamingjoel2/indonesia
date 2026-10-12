@@ -206,7 +206,7 @@ export const experiences: Experience[] = [
     tripCount: 8,
     heroImage: {
       src: "https://images.unsplash.com/photo-1723153247780-02e191e1dd0c?auto=format&fit=crop&w=1800&q=80",
-      alt: "A Sumatran orangutan sitting among branches in dense green rainforest",
+      alt: "An orangutan sitting among branches in dense rainforest",
       credit: "Photo: Nick Reijrink / Unsplash",
     },
     destinations: ["sumatra", "kalimantan", "lake-toba"],
