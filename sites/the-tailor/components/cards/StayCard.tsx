@@ -26,7 +26,7 @@ export function StayCard({ s, headingLevel = "h3" }: { s: Stay; headingLevel?: "
       <H className="mt-2 font-display text-display-sm group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
         {s.name}
       </H>
-      <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{s.summary}</p>
+      <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{s.summary}</p>
       <p className="mt-3 text-sm">
         From <Price amount={s.priceFrom} className="font-medium" /> per person · night
       </p>

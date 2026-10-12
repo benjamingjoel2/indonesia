@@ -23,7 +23,7 @@ export function BlogCard({ p }: { p: BlogPostMeta }) {
       <h2 className="mt-2 font-display text-display-sm group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
         {p.title}
       </h2>
-      <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{p.excerpt}</p>
+      <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{p.excerpt}</p>
       <p className="mt-3 text-sm text-ink-soft">{fmtDate(p.date)}</p>
     </Link>
   );

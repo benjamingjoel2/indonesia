@@ -112,7 +112,7 @@ export function Header() {
                     href={item.href}
                     onMouseEnter={hoverClose}
                     aria-current={isActive(item.href) ? "page" : undefined}
-                    className="inline-flex h-10 items-center rounded-sm px-3 text-[0.9375rem] hover:bg-sand-100 aria-[current=page]:underline aria-[current=page]:underline-offset-8"
+                    className="inline-flex h-10 items-center rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100 aria-[current=page]:underline aria-[current=page]:underline-offset-8"
                   >
                     {item.label}
                   </Link>
@@ -127,7 +127,7 @@ export function Header() {
                     onClick={() =>
                       setOpenMenu((m) => (m === item.kind ? null : (item.kind as MenuKind)))
                     }
-                    className="inline-flex h-10 items-center gap-1 rounded-sm px-3 text-[0.9375rem] hover:bg-sand-100 aria-expanded:bg-sand-100"
+                    className="inline-flex h-10 items-center gap-1 rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100 aria-expanded:bg-sand-100"
                   >
                     {item.label}
                     <Icon
@@ -143,7 +143,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onMouseEnter={hoverClose}
-                className="inline-flex h-10 items-center rounded-sm px-3 text-[0.9375rem] hover:bg-sand-100"
+                className="inline-flex h-10 items-center rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100"
               >
                 Contact
               </Link>
