@@ -275,7 +275,7 @@ export const stays: Stay[] = [
     seo: {
       title: "qualia, Hamilton Island",
       description:
-        "qualia is an adults-only retreat on Hamilton Island's northern tip, with pavilions over the Whitsunday Passage and easy access to Whitehaven Beach by sea or air.",
+        "qualia is an adults-only retreat on Hamilton Island's north tip, with pavilions over the Whitsunday Passage and quick access to Whitehaven Beach by sea or air.",
     },
   },
   {
@@ -431,7 +431,7 @@ export const stays: Stay[] = [
     seo: {
       title: "Saffire Freycinet, Tasmania",
       description:
-        "Saffire Freycinet looks across Great Oyster Bay to the Hazards, with all-inclusive dining, Spa Saffire and Wineglass Bay walks close by on Tasmania's east coast.",
+        "Saffire Freycinet looks across Great Oyster Bay to the Hazards, with all-inclusive dining, Spa Saffire and Wineglass Bay walks nearby on Tasmania's east coast.",
     },
   },
 ];
