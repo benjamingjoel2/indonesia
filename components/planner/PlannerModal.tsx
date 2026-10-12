@@ -4,10 +4,9 @@ import { useRef } from "react";
 import { useFocusTrap, useScrollLock } from "@/lib/hooks";
 import { useUi } from "@/lib/ui-state";
 import { Icon } from "@/components/ui/Icon";
-import { LinkButton } from "@/components/ui/Button";
+import { PlannerForm, type RegionImages } from "./PlannerForm";
 
-/** Modal wrapper for the trip planner. The 5-step form is mounted here in phase 3. */
-export function PlannerModal() {
+export function PlannerModal({ regionImages, intro }: { regionImages: RegionImages; intro: React.ReactNode }) {
   const { plannerOpen, closePlanner } = useUi();
   const panelRef = useRef<HTMLDivElement>(null);
   useScrollLock(plannerOpen);
@@ -28,26 +27,23 @@ export function PlannerModal() {
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="planner-title"
-        className="relative flex w-full max-w-5xl animate-fade-in flex-col overflow-y-auto bg-paper sm:max-h-[90vh] sm:rounded-sm"
+        aria-labelledby="planner-modal-title"
+        data-scroll-root
+        className="relative w-full max-w-6xl animate-fade-in overflow-y-auto bg-paper sm:max-h-[92vh] sm:rounded-sm"
       >
         <button
           type="button"
           onClick={closePlanner}
-          autoFocus
-          className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100"
+          className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-paper hover:bg-sand-100"
           aria-label="Close planner"
         >
           <Icon name="close" />
         </button>
-        <div className="p-8 sm:p-12">
-          <h2 id="planner-title" className="font-display text-display-md">
-            Begin your <em className="font-light italic">journey</em>.
-          </h2>
-          <p className="mt-4 max-w-prose text-ink-soft">The trip planner is coming in the next phase.</p>
-          <LinkButton href="/plan-your-trip" className="mt-6" onClick={closePlanner} arrow>
-            Open planner page
-          </LinkButton>
+        <div className="grid md:grid-cols-[minmax(0,22rem)_1fr]">
+          <div className="hidden md:block">{intro}</div>
+          <div className="p-6 pt-14 sm:p-10">
+            <PlannerForm regionImages={regionImages} titleId="planner-modal-title" onDone={closePlanner} />
+          </div>
         </div>
       </div>
     </div>

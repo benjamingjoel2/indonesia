@@ -2,13 +2,15 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { site } from "@/data/site";
 import { CurrencyProvider } from "@/lib/currency";
-import { buildSearchIndex } from "@/lib/search";
+import { buildSearchIndex } from "@/lib/search-index";
 import { UiProvider } from "@/lib/ui-state";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+import { PlannerIntro } from "@/components/planner/PlannerIntro";
 import { PlannerModal } from "@/components/planner/PlannerModal";
+import { getRegionImages } from "@/lib/planner-images";
 import { SearchOverlay } from "@/components/search/SearchOverlay";
 import "./globals.css";
 
@@ -59,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <WhatsAppFab />
             <SearchOverlay index={searchIndex} />
-            <PlannerModal />
+            <PlannerModal regionImages={getRegionImages()} intro={<PlannerIntro />} />
           </UiProvider>
         </CurrencyProvider>
       </body>

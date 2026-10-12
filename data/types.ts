@@ -54,6 +54,8 @@ export interface Destination {
   region: string;
   group: RegionGroup;
   topDestination: boolean;
+  /** Number of partner stays we work with here (editorial figure shown on cards). */
+  partnerStays: number;
   /** One line used on cards. */
   hook: string;
   /** Longer line used under the H1 on the detail page. */
@@ -74,7 +76,11 @@ export interface Destination {
 export interface Experience {
   slug: Slug;
   name: string;
+  /** One line used on cards. */
+  hook: string;
   intro: string;
+  /** Number of sample trips in this style (editorial figure shown on cards). */
+  tripCount: number;
   heroImage: Img;
   destinations: Slug[];
   highlights: string[];
