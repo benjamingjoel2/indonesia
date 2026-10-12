@@ -11,7 +11,7 @@ export const team: TeamMember[] = [
   {
     name: "Drew Kluska",
     role: "Founder & Managing Director",
-    bio: "Drew founded The Tailor to design private journeys across Australia, New Zealand and Fiji with the care of a bespoke service. He leads the company from its Adelaide base and sets the standard for every journey the team designs.",
+    bio: "Drew founded The Tailor to design private journeys across Australia, New Zealand and Fiji with the care of a bespoke service. He leads the company from its base in Adelaide.",
     image: {
       src: portrait("1560250097-0b93528c311a"),
       alt: "Portrait placeholder",
