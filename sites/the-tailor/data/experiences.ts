@@ -43,7 +43,7 @@ export const experiences: Experience[] = [
     seo: {
       title: "Best of Australia: Sydney, Uluru and the Reef",
       description:
-        "Private journeys linking Sydney Harbour, Uluru and the Great Barrier Reef, with considered flight routing, three-night stays and guides who know each place well.",
+        "Private journeys linking Sydney Harbour, Uluru and the Great Barrier Reef, with considered flight routing, three-night stays and guides who know each place.",
     },
   },
   {
@@ -82,13 +82,13 @@ export const experiences: Experience[] = [
     seo: {
       title: "Cultural and Expert-Led Journeys in Australia",
       description:
-        "Australian journeys built around Aboriginal-guided walks, rock art, rangers, reef scientists and winemakers, with access arranged in advance and protocols respected.",
+        "Australian journeys built around Aboriginal-guided walks, rock art, rangers, reef scientists and winemakers, with access arranged in advance.",
     },
   },
   {
     slug: "five-star-luxury",
     name: "Five-Star Luxury",
-    hook: "Australia's finest lodges, linked by private transfers and quiet planning",
+    hook: "Australia's finest lodges, linked by private transfers and care",
     intro:
       "Australia's best lodges are small, remote and often booked out a year ahead. We secure the right rooms at places such as Longitude 131, Southern Ocean Lodge and Lizard Island, then handle every connection between them so the only decisions left are about lunch.",
     tripCount: 22,
@@ -121,7 +121,7 @@ export const experiences: Experience[] = [
     seo: {
       title: "Luxury Lodge Journeys Across Australia",
       description:
-        "Private Australian journeys staying at Longitude 131, Southern Ocean Lodge, Lizard Island and Saffire Freycinet, with every flight and transfer arranged for you.",
+        "Private Australian journeys staying at Longitude 131, Southern Ocean Lodge, Lizard Island and Saffire Freycinet, with every flight and transfer arranged.",
     },
   },
   {
@@ -166,7 +166,7 @@ export const experiences: Experience[] = [
   {
     slug: "reef-and-islands",
     name: "Reef & islands",
-    hook: "Private island lodges on the reef, from Lizard Island to the Whitsundays",
+    hook: "Island lodges on the reef, from Lizard Island to the Whitsundays",
     intro:
       "The Great Barrier Reef stretches over 2,300 kilometres, and where you stay shapes what you see. We choose between the remote northern reefs around Lizard Island and the sheltered Whitsundays, and add Ningaloo on the west coast for those who want reef from the beach.",
     tripCount: 20,
@@ -238,7 +238,7 @@ export const experiences: Experience[] = [
     seo: {
       title: "Private Air Journeys in the Kimberley and Top End",
       description:
-        "Fly over the Bungle Bungles, land beside Mitchell Falls and reach remote Kimberley and Top End lodges by private aircraft, helicopter and seaplane in the dry season.",
+        "Fly over the Bungle Bungles, land beside Mitchell Falls and reach remote Kimberley and Top End lodges by private aircraft, helicopter and seaplane.",
     },
   },
   {
@@ -355,7 +355,7 @@ export const experiences: Experience[] = [
     seo: {
       title: "Honeymoons in Australia, Fiji and New Zealand",
       description:
-        "Private honeymoons pairing Uluru, the Great Barrier Reef and Tasmania with suites built for privacy, unhurried days and an optional Fiji or New Zealand extension.",
+        "Private honeymoons pairing Uluru, the Great Barrier Reef and Tasmania with private suites, unhurried days and an optional Fiji or New Zealand extension.",
     },
   },
   {
@@ -394,7 +394,7 @@ export const experiences: Experience[] = [
     seo: {
       title: "Fishing Expeditions in Northern Australia",
       description:
-        "Guided fishing expeditions for barramundi in the Top End, black marlin on the Great Barrier Reef and Kimberley flats fishing, staying at comfortable remote lodges.",
+        "Guided fishing expeditions for barramundi in the Top End, black marlin on the Great Barrier Reef and Kimberley flats fishing, from comfortable remote lodges.",
     },
   },
 ];
