@@ -29,7 +29,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
   // Portal to <body>: the sticky header's backdrop-filter would otherwise
   // become the containing block for this fixed-position drawer.
   return createPortal(
-    <div className="fixed inset-0 z-[60] lg:hidden">
+    <div className="fixed inset-0 z-[60] xl:hidden">
       <button
         type="button"
         aria-label="Close menu"

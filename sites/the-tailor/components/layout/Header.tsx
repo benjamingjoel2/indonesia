@@ -103,7 +103,7 @@ export function Header() {
       <div className="container-edit flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
         <Logo />
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label="Main" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) =>
               item.kind === "link" ? (
@@ -161,7 +161,7 @@ export function Header() {
           >
             <Icon name="search" />
           </button>
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <CurrencySwitcher id="currency-desktop" />
           </div>
           <div className="hidden sm:block">
@@ -172,7 +172,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100 xl:hidden"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -270,7 +270,7 @@ function MegaPanel({
       aria-labelledby={`menu-trigger-${kind}`}
       hidden={!open}
       onMouseEnter={onEnter}
-      className="absolute inset-x-0 top-full hidden border-b border-sand-300 bg-paper shadow-[0_24px_40px_-24px_rgba(15,46,42,0.25)] lg:block [&[hidden]]:hidden"
+      className="absolute inset-x-0 top-full hidden border-b border-sand-300 bg-paper shadow-[0_24px_40px_-24px_rgba(15,46,42,0.25)] xl:block [&[hidden]]:hidden"
     >
       <div className="container-edit animate-fade-in py-10">{children}</div>
     </div>
