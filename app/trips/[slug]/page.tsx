@@ -31,8 +31,6 @@ import { buttonClass } from "@/components/ui/Button";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return getItineraries().map((i) => ({ slug: i.slug }));
 }

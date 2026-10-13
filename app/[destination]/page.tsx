@@ -27,8 +27,6 @@ import { PlanButton } from "@/components/ui/PlanButton";
 
 type Props = { params: Promise<{ destination: string }> };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return getDestinations().map((d) => ({ destination: d.slug }));
 }
