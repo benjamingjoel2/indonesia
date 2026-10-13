@@ -11,7 +11,7 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
         <path d="M5 20c3.5-1.6 7-1.6 11 0s7.5 1.6 11 0" fill="none" stroke="currentColor" strokeWidth="1.3" />
         <path d="M9 17l5-7 3 4 2-2.5 4 5.5" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
       </svg>
-      <span className="font-display text-[1.3rem] leading-none tracking-[-0.01em]">
+      <span className="font-display text-[1.2rem] leading-none tracking-[-0.01em]">
         The Island <em className="font-light italic">Edit</em>
       </span>
     </Link>

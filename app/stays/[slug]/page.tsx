@@ -80,7 +80,7 @@ export default async function StayPage({ params }: Props) {
           <h2 className="mt-14 font-display text-display-sm">What you&apos;ll find</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {s.amenities.map((a) => (
-              <li key={a} className="flex gap-3 text-[0.9375rem]">
+              <li key={a} className="flex gap-3 text-[0.8125rem]">
                 <Icon name="check" size={18} className="mt-0.5 shrink-0 text-lagoon-500" />
                 {a}
               </li>

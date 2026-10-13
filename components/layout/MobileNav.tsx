@@ -101,7 +101,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-jungle-900 px-5 text-[0.9375rem] font-medium"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-jungle-900 px-5 text-[0.8125rem] font-medium"
             >
               <WhatsAppIcon size={18} /> Chat on WhatsApp
             </a>
@@ -163,7 +163,7 @@ function LinkList({ links }: { links: NavLink[] }) {
 
 function SimpleLink({ href, children, strong }: { href: string; children: React.ReactNode; strong?: boolean }) {
   return (
-    <Link href={href} className={`block py-2 text-[1.0625rem] ${strong ? "font-medium underline underline-offset-4" : ""}`}>
+    <Link href={href} className={`block py-2 text-[0.9375rem] ${strong ? "font-medium underline underline-offset-4" : ""}`}>
       {children}
     </Link>
   );

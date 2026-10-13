@@ -12,8 +12,8 @@ export function Footer() {
           {/* Brand block */}
           <div className="max-w-sm">
             <Logo tone="light" />
-            <p className="mt-5 text-[0.9375rem] leading-relaxed text-sand-200">{site.blurb}</p>
-            <ul className="mt-6 space-y-2 text-[0.9375rem]">
+            <p className="mt-5 text-[0.8125rem] leading-relaxed text-sand-200">{site.blurb}</p>
+            <ul className="mt-6 space-y-2 text-[0.8125rem]">
               <li>
                 <a href={site.phoneHref} className="inline-flex items-center gap-2.5 hover:text-white">
                   <Icon name="phone" size={16} /> {site.phone}
@@ -42,7 +42,7 @@ export function Footer() {
             {footerColumns.map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <h2 className="eyebrow mb-4 text-sand-400">{col.title}</h2>
-                <ul className="space-y-2.5 text-[0.9375rem]">
+                <ul className="space-y-2.5 text-[0.8125rem]">
                   {col.links.map((l) => (
                     <li key={l.href}>
                       <Link href={l.href} className="text-sand-100 hover:text-white hover:underline hover:underline-offset-4">
@@ -55,7 +55,7 @@ export function Footer() {
             ))}
             <nav aria-label="Connect">
               <h2 className="eyebrow mb-4 text-sand-400">Connect</h2>
-              <ul className="space-y-2.5 text-[0.9375rem]">
+              <ul className="space-y-2.5 text-[0.8125rem]">
                 {site.socials.map((s) => (
                   <li key={s.label}>
                     <a

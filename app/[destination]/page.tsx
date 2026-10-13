@@ -113,7 +113,7 @@ export default async function DestinationPage({ params }: Props) {
               <li key={h.title} className="border-t border-sand-300 pt-5">
                 <span className="font-display text-sm italic text-lagoon-500">0{i + 1}</span>
                 <p className="mt-1 font-display text-xl">{h.title}</p>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{h.text}</p>
+                <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{h.text}</p>
               </li>
             ))}
           </ul>
