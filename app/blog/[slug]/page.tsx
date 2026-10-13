@@ -13,8 +13,6 @@ import { JsonLd } from "@/components/ui/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
 }

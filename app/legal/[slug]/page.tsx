@@ -6,7 +6,6 @@ import { TextHero } from "@/components/sections/PageHero";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
 export const generateStaticParams = () => Object.keys(legalPages).map((slug) => ({ slug }));
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

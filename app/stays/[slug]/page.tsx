@@ -25,8 +25,6 @@ import { Price } from "@/components/ui/Price";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return getStays().map((s) => ({ slug: s.slug }));
 }
