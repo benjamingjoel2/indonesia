@@ -18,7 +18,7 @@ export function DestinationCard({ d, sizes = "(min-width: 1024px) 25vw, (min-wid
       <h3 className="mt-2 font-display text-display-sm group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
         {d.name}
       </h3>
-      <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{d.hook}</p>
+      <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{d.hook}</p>
       <p className="mt-3 text-sm font-medium">{d.partnerStays} hand-picked stays</p>
     </Link>
   );

@@ -34,7 +34,7 @@ export default function WhyPage() {
             <li key={s.title} className="border-t border-jungle-900 pt-5">
               <span className="font-display text-4xl italic font-light text-lagoon-500">{i + 1}</span>
               <h3 className="mt-3 font-display text-xl">{s.title}</h3>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{s.text}</p>
+              <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{s.text}</p>
             </li>
           ))}
         </ol>

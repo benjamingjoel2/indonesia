@@ -47,7 +47,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="mt-5 font-display text-display-sm">{m.name}</h3>
                 <p className="eyebrow mt-1 text-lagoon-500">{m.role}</p>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">{m.bio}</p>
+                <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink-soft">{m.bio}</p>
                 <p className="mt-2 text-sm text-ink-soft">Speaks {m.languages.join(", ")}</p>
               </li>
             ))}

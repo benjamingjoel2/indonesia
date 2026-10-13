@@ -53,7 +53,7 @@ export function SectionHeader({
         {intro && <p className="mt-4 text-lg leading-relaxed text-ink-soft">{intro}</p>}
       </div>
       {link && (
-        <ArrowLink href={link.href} className="shrink-0 text-[0.9375rem]">
+        <ArrowLink href={link.href} className="shrink-0 text-[0.8125rem]">
           {link.label}
         </ArrowLink>
       )}
