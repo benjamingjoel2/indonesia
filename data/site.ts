@@ -1,13 +1,27 @@
 import type { NavGroup, NavLink } from "./types";
 
 /**
+ * The site's public address. Set NEXT_PUBLIC_SITE_URL to the live domain
+ * (e.g. https://www.theislandedit.com once connected). On Vercel it falls back to
+ * the project's production domain, so canonical links always point at the live site.
+ */
+function siteUrl(): string {
+  const url =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "") ||
+    "http://localhost:3000";
+  return url.replace(/\/$/, "");
+}
+
+/**
  * Brand, contact details and navigation.
  * Everything in [square brackets] is a placeholder to replace before launch.
  */
 export const site = {
   name: "The Island Edit",
   shortName: "Island Edit",
-  url: "https://www.theislandedit.com", // [placeholder domain]
+  /** Public address used for canonical links, the sitemap and social cards (see siteUrl below). */
+  url: siteUrl(),
   description:
     "Tailor-made Indonesia journeys, planned end to end by one dedicated travel specialist. Bali, Komodo, Raja Ampat, Java and beyond.",
   blurb:
