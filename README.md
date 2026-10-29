@@ -17,8 +17,10 @@ npm run build
 
 ## SEO
 
+- Live at https://theislandedit.tourground.com (DNS for tourground.com is managed in Vercel).
 - `NEXT_PUBLIC_SITE_URL` sets the public address used in canonical links, the sitemap, robots.txt
-  and social cards. It is set on the Vercel project; change it when a custom domain is connected.
+  and social cards. It is set on the Vercel project.
+- Images load directly from Unsplash's CDN via `lib/image-loader.ts` (no Vercel image optimizer).
 - Per-page titles, descriptions, canonical URLs and Open Graph/Twitter tags come from `lib/seo.ts`.
 - Structured data: TravelAgency + WebSite (home), TouristDestination, TouristTrip, LodgingBusiness,
   Article, FAQPage and BreadcrumbList on the relevant pages.

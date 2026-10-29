@@ -2,7 +2,7 @@ import type { NavGroup, NavLink } from "./types";
 
 /**
  * The site's public address. Set NEXT_PUBLIC_SITE_URL to the live domain
- * (e.g. https://www.theislandedit.com once connected). On Vercel it falls back to
+ * (https://theislandedit.tourground.com). On Vercel it falls back to
  * the project's production domain, so canonical links always point at the live site.
  */
 function siteUrl(): string {
@@ -29,7 +29,7 @@ export const site = {
   phone: "+62 361 000 0000", // [placeholder]
   phoneHref: "tel:+623610000000",
   whatsapp: "6281200000000", // [NUMBER] digits only, used in wa.me links
-  email: "hello@theislandedit.com", // [placeholder]
+  email: "hello@theislandedit.tourground.com",
   credential: "[Award / credential placeholder] · Licensed Indonesian tour operator",
   replyPromise: "Replies in as little as 15 minutes",
   rating: { score: 4.9, count: 640, source: "[Review platform]" },
