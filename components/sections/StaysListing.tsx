@@ -2,35 +2,36 @@ import type { Stay } from "@/data/types";
 import { destinationName, stayTypeLabel, tierLabel } from "@/lib/data";
 import { StayCard } from "@/components/cards/StayCard";
 import { FilterableGrid, type FilterFacet } from "./FilterableGrid";
+import { t } from "@/lib/i18n/server";
 
 export function StaysListing({ stays, showRegion = true }: { stays: Stay[]; showRegion?: boolean }) {
   const facets: FilterFacet[] = [
     {
       id: "tier",
-      label: "Budget",
+      label: t("Budget"),
       options: (["value", "premium", "ultra"] as const)
-        .filter((t) => stays.some((s) => s.tier === t))
-        .map((t) => ({ value: t, label: tierLabel[t] })),
+        .filter((tier) => stays.some((s) => s.tier === tier))
+        .map((tier) => ({ value: tier, label: t(tierLabel[tier]) })),
     },
     {
       id: "type",
-      label: "Type",
-      options: Array.from(new Set(stays.map((s) => s.type))).map((t) => ({ value: t, label: stayTypeLabel[t] })),
+      label: t("Type"),
+      options: Array.from(new Set(stays.map((s) => s.type))).map((type) => ({ value: type, label: t(stayTypeLabel[type]) })),
     },
   ];
   const regions = Array.from(new Set(stays.map((s) => s.destination)));
   if (showRegion && regions.length > 1) {
-    facets.unshift({ id: "region", label: "Region", options: regions.map((r) => ({ value: r, label: destinationName(r) })) });
+    facets.unshift({ id: "region", label: t("Region"), options: regions.map((r) => ({ value: r, label: destinationName(r) })) });
   }
   return (
     <FilterableGrid
       facets={facets}
-      noun={["stay", "stays"]}
+      noun={[t("stay"), t("stays")]}
       gridClass="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
       sorts={[
-        { id: "recommended", label: "Recommended" },
-        { id: "price", label: "Price: low to high" },
-        { id: "priceDesc", label: "Price: high to low", dir: "desc" },
+        { id: "recommended", label: t("Recommended") },
+        { id: "price", label: t("Price: low to high") },
+        { id: "priceDesc", label: t("Price: high to low"), dir: "desc" },
       ]}
       entries={stays.map((s) => ({
         key: s.slug,

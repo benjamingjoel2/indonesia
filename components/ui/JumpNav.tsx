@@ -1,10 +1,12 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import { useEffect, useState } from "react";
 import { PlanButton } from "./PlanButton";
 
 /** Sticky in-page section navigation with scroll-spy. */
-export function JumpNav({ items, cta = "Start planning" }: { items: { id: string; label: string }[]; cta?: string }) {
+export function JumpNav({ items, cta }: { items: { id: string; label: string }[]; cta?: string }) {
+  const { t } = useT();
   const [active, setActive] = useState(items[0]?.id);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export function JumpNav({ items, cta = "Start planning" }: { items: { id: string
   return (
     <div className="sticky top-16 z-30 border-b border-sand-300 bg-paper/95 backdrop-blur lg:top-[4.5rem]">
       <div className="container-edit flex items-center justify-between gap-4">
-        <nav aria-label="On this page" className="-mx-1 overflow-x-auto">
+        <nav aria-label={t("On this page")} className="-mx-1 overflow-x-auto">
           <ul className="flex whitespace-nowrap">
             {items.map((i) => (
               <li key={i.id}>
@@ -39,7 +41,7 @@ export function JumpNav({ items, cta = "Start planning" }: { items: { id: string
           </ul>
         </nav>
         <div className="hidden shrink-0 md:block">
-          <PlanButton className="!min-h-9 !py-2 text-sm">{cta}</PlanButton>
+          <PlanButton className="!min-h-9 !py-2 text-sm">{cta ?? t("Start planning")}</PlanButton>
         </div>
       </div>
     </div>
