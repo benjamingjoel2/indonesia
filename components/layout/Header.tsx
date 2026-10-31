@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useT } from "@/components/i18n/I18nProvider";
+import Link from "@/components/i18n/Link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -19,10 +20,13 @@ import { Icon } from "@/components/ui/Icon";
 import { CurrencySwitcher } from "./CurrencySwitcher";
 import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
+import { LanguageSelector } from "@/components/i18n/LanguageSelector";
+import { stripLocale } from "@/lib/i18n/config";
 
 type MenuKind = Exclude<MainNavItem["kind"], "link">;
 
 export function Header() {
+  const { t, tx } = useT();
   const pathname = usePathname();
   const { openPlanner, openSearch } = useUi();
   const [openMenu, setOpenMenu] = useState<MenuKind | null>(null);
@@ -90,7 +94,8 @@ export function Header() {
     hoverTimer.current = setTimeout(() => setOpenMenu(null), 180);
   };
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const path = stripLocale(pathname);
+  const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
 
   return (
     <header
@@ -103,9 +108,9 @@ export function Header() {
       <div className="container-edit flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
         <Logo />
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label={t("Main")} className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {mainNav.map((item) =>
+            {tx(mainNav).map((item) =>
               item.kind === "link" ? (
                 <li key={item.label}>
                   <Link
@@ -145,7 +150,7 @@ export function Header() {
                 onMouseEnter={hoverClose}
                 className="inline-flex h-10 items-center rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100"
               >
-                Contact
+                {t("Contact")}
               </Link>
             </li>
           </ul>
@@ -156,24 +161,25 @@ export function Header() {
             type="button"
             onClick={openSearch}
             className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100"
-            aria-label="Search the site"
+            aria-label={t("Search the site")}
             aria-keyshortcuts="/ Control+K Meta+K"
           >
             <Icon name="search" />
           </button>
+          <LanguageSelector className="hidden px-1 text-xs lg:block" />
           <div className="hidden lg:block">
             <CurrencySwitcher id="currency-desktop" />
           </div>
           <div className="hidden sm:block">
             <Button onClick={openPlanner} arrow>
-              Start planning
+              {t("Start planning")}
             </Button>
           </div>
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
             className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100 lg:hidden"
-            aria-label="Open menu"
+            aria-label={t("Open menu")}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
           >
@@ -185,18 +191,18 @@ export function Header() {
       {/* Mega-menu panels */}
       <MegaPanel kind="destinations" open={openMenu === "destinations"} onEnter={() => hoverOpen("destinations")}>
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr_1fr_0.9fr]">
-          {destinationsMenu.map((group) => (
+          {tx(destinationsMenu).map((group) => (
             <MenuColumn key={group.title} group={group} />
           ))}
           <MenuFeature
-            title="Not sure where to *begin*?"
-            text="Tell us how you like to travel. Your specialist will suggest a route across the islands that fits."
+            title={t("Not sure where to *begin*?")}
+            text={t("Tell us how you like to travel. Your specialist will suggest a route across the islands that fits.")}
             onPlan={openPlanner}
           />
         </div>
         <div className="mt-8 border-t border-sand-300 pt-5">
           <ArrowLink href="/destinations" className="text-sm">
-            View all destinations
+            {t("View all destinations")}
           </ArrowLink>
         </div>
       </MegaPanel>
@@ -204,9 +210,9 @@ export function Header() {
       <MegaPanel kind="experiences" open={openMenu === "experiences"} onEnter={() => hoverOpen("experiences")}>
         <div className="grid gap-10 lg:grid-cols-[2fr_0.9fr]">
           <div>
-            <p className="eyebrow mb-4 text-ink-soft">Travel by the kind of trip</p>
+            <p className="eyebrow mb-4 text-ink-soft">{t("Travel by the kind of trip")}</p>
             <ul className="grid grid-cols-2 gap-x-10 gap-y-1 xl:grid-cols-3">
-              {experiencesMenu.map((l) => (
+              {tx(experiencesMenu).map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="block py-1.5 font-display text-lg hover:text-lagoon-500">
                     {l.label}
@@ -216,33 +222,30 @@ export function Header() {
             </ul>
           </div>
           <MenuFeature
-            title="Something more *bespoke*?"
-            text="Private yachts, remote islands, multi-generation celebrations. Our private travel desk handles it."
+            title={t("Something more *bespoke*?")}
+            text={t("Private yachts, remote islands, multi-generation celebrations. Our private travel desk handles it.")}
             href="/private-travel"
-            hrefLabel="Private & bespoke travel"
+            hrefLabel={t("Private & bespoke travel")}
           />
         </div>
         <div className="mt-8 border-t border-sand-300 pt-5">
           <ArrowLink href="/experiences" className="text-sm">
-            All experiences
+            {t("All experiences")}
           </ArrowLink>
         </div>
       </MegaPanel>
 
       <MegaPanel kind="about" open={openMenu === "about"} onEnter={() => hoverOpen("about")}>
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr_1fr_0.9fr]">
-          {aboutMenu.map((group) => (
+          {tx(aboutMenu).map((group) => (
             <MenuColumn key={group.title} group={group} />
           ))}
           <div className="rounded-sm bg-sand-100 p-6">
-            <p className="eyebrow mb-3 text-ink-soft">Talk to a specialist</p>
-            <a href={site.phoneHref} className="flex items-center gap-2 py-1 hover:text-lagoon-500">
-              <Icon name="phone" size={16} /> {site.phone}
-            </a>
+            <p className="eyebrow mb-3 text-ink-soft">{t("Talk to a specialist")}</p>
             <a href={`mailto:${site.email}`} className="flex items-center gap-2 py-1 hover:text-lagoon-500">
               <Icon name="mail" size={16} /> {site.email}
             </a>
-            <p className="mt-3 text-sm text-ink-soft">{site.replyPromise}, seven days a week.</p>
+            <p className="mt-3 text-sm text-ink-soft">{t("{reply}, seven days a week.", { reply: t(site.replyPromise) })}</p>
           </div>
         </div>
       </MegaPanel>
@@ -307,6 +310,7 @@ function MenuFeature({
   href?: string;
   hrefLabel?: string;
 }) {
+  const { t } = useT();
   return (
     <div className="flex flex-col justify-between rounded-sm bg-jungle-900 p-6 text-sand-50">
       <div>
@@ -315,7 +319,7 @@ function MenuFeature({
       </div>
       {onPlan ? (
         <Button variant="light" onClick={onPlan} className="mt-6 self-start" arrow>
-          Start planning
+          {t("Start planning")}
         </Button>
       ) : href ? (
         <ArrowLink href={href} className="mt-6 text-sm text-sand-50">

@@ -24,7 +24,7 @@ export const plannerSchema = z.object({
     email: z.string().email(),
     phoneCountry: z.string().max(6),
     phone: z.string().max(20),
-    methods: z.array(z.enum(["email", "whatsapp", "phone"])).min(1),
+    methods: z.array(z.enum(["email", "phone"])).min(1),
     notes: z.string().max(4000),
   }),
 });

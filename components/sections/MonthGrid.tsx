@@ -1,7 +1,6 @@
 import type { MonthRating, SeasonRating } from "@/data/types";
+import { monthName, t } from "@/lib/i18n/server";
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const full = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const style: Record<SeasonRating, { label: string; cls: string }> = {
   best: { label: "Best", cls: "bg-jungle-900 text-sand-50" },
@@ -22,11 +21,11 @@ export function MonthGrid({ ratings }: { ratings: MonthRating[] }) {
             title={r.note}
           >
             <span className="text-sm font-medium">
-              <abbr title={full[r.month - 1]} className="no-underline">
-                {months[r.month - 1]}
+              <abbr title={monthName(r.month)} className="no-underline">
+                {monthName(r.month, "short")}
               </abbr>
             </span>
-            <span className="mt-6 text-xs opacity-90">{style[r.rating].label}</span>
+            <span className="mt-6 text-xs opacity-90">{t(style[r.rating].label)}</span>
           </li>
         ))}
       </ol>
@@ -36,7 +35,7 @@ export function MonthGrid({ ratings }: { ratings: MonthRating[] }) {
             .filter((r) => r.note)
             .map((r) => (
               <li key={r.month}>
-                <span className="font-medium text-ink">{full[r.month - 1]}:</span> {r.note}
+                <span className="font-medium text-ink">{monthName(r.month)}:</span> {r.note}
               </li>
             ))}
         </ul>

@@ -1,16 +1,18 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import Image from "next/image";
 import { useId, useState } from "react";
 import { home } from "@/data/home";
 import { postJson } from "@/lib/preview";
 import { Button } from "@/components/ui/Button";
-import { Heading } from "@/components/ui/Heading";
+import { Heading, emphasize } from "@/components/ui/Heading";
 import { Icon } from "@/components/ui/Icon";
 
 type Status = "idle" | "sending" | "done" | "error";
 
 export function BrochureSignup({ compact = false }: { compact?: boolean }) {
+  const { t } = useT();
   const b = home.brochure;
   const id = useId();
   const [email, setEmail] = useState("");
@@ -39,9 +41,9 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
       <div className={compact ? "" : "container-edit"}>
         <div className="grid items-center gap-10 rounded-sm border border-sand-300 bg-sand-50 p-6 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-14 md:p-10 lg:grid-cols-[minmax(0,18rem)_1fr]">
           <div className="relative mx-auto aspect-[3/4] w-48 rotate-[-3deg] overflow-hidden rounded-sm shadow-[0_20px_40px_-18px_rgba(15,46,42,0.5)] md:w-full">
-            <Image src={b.cover.src} alt={b.cover.alt} fill sizes="(min-width: 768px) 18rem, 12rem" className="object-cover" />
+            <Image src={b.cover.src} alt={t(b.cover.alt)} fill sizes="(min-width: 768px) 18rem, 12rem" className="object-cover" />
             <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-jungle-950/70 via-transparent to-jungle-950/70 p-5 text-sand-50">
-              <p className="eyebrow text-[0.625rem]">Free guide</p>
+              <p className="eyebrow text-[0.625rem]">{t("Free guide")}</p>
               <p className="font-display text-2xl leading-tight">
                 The Indonesia <em className="font-light italic">Edit</em>
               </p>
@@ -53,30 +55,30 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
               <div>
                 <Icon name="check" size={32} className="text-lagoon-500" />
                 <p id={`${id}-title`} className="mt-4 font-display text-display-md">
-                  Check your <em className="font-light italic">inbox</em>.
+                  {emphasize(t("Check your *inbox*."))}
                 </p>
                 <p className="mt-3 max-w-lg text-ink-soft">
-                  {b.title} is on its way to {email}. If it hasn&apos;t arrived in a few minutes, look in your promotions folder.
+                  {t("{title} is on its way to {email}. If it hasn't arrived in a few minutes, look in your promotions folder.", { title: b.title, email })}
                 </p>
               </div>
             ) : (
               <>
-                <p className="eyebrow text-lagoon-500">{b.subtitle}</p>
+                <p className="eyebrow text-lagoon-500">{t(b.subtitle)}</p>
                 <Heading id={`${id}-title`} size="md" className="mt-3">
-                  {"Download *The Indonesia Edit*"}
+                  {t("Download *The Indonesia Edit*")}
                 </Heading>
-                <p className="mt-3 max-w-lg text-ink-soft">{b.text}</p>
+                <p className="mt-3 max-w-lg text-ink-soft">{t(b.text)}</p>
                 <form onSubmit={submit} noValidate className="mt-6 max-w-lg">
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <label htmlFor={`${id}-email`} className="sr-only">
-                      Email address
+                      {t("Email address")}
                     </label>
                     <input
                       id={`${id}-email`}
                       type="email"
                       autoComplete="email"
                       required
-                      placeholder="Your email address"
+                      placeholder={t("Your email address")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       aria-invalid={Boolean(error)}
@@ -84,16 +86,16 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
                       className="h-12 min-w-0 flex-1 rounded-sm border border-sand-400 bg-paper px-4 aria-[invalid=true]:border-clay-500"
                     />
                     <Button type="submit" disabled={status === "sending"} arrow>
-                      {status === "sending" ? "Sending…" : "Get the guide"}
+                      {status === "sending" ? t("Sending…") : t("Get the guide")}
                     </Button>
                   </div>
                   {error && (
                     <p id={`${id}-err`} className="mt-2 text-sm text-clay-600">
-                      {error}
+                      {t(error)}
                     </p>
                   )}
                   {status === "error" && (
-                    <p className="mt-2 text-sm text-clay-600">Something went wrong. Please try again.</p>
+                    <p className="mt-2 text-sm text-clay-600">{t("Something went wrong. Please try again.")}</p>
                   )}
                   <label className="mt-4 flex items-start gap-3 text-sm text-ink-soft">
                     <input
@@ -102,7 +104,7 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
                       onChange={(e) => setNewsletter(e.target.checked)}
                       className="mt-0.5 h-4 w-4 accent-jungle-900"
                     />
-                    Also send me occasional travel notes and new trip ideas. Unsubscribe any time.
+                    {t("Also send me occasional travel notes and new trip ideas. Unsubscribe any time.")}
                   </label>
                 </form>
               </>

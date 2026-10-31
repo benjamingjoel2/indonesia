@@ -2,6 +2,7 @@ import type { Itinerary, Slug } from "@/data/types";
 import { destinationName, tierLabel } from "@/lib/data";
 import { ItineraryCard } from "@/components/cards/ItineraryCard";
 import { FilterableGrid, type FilterFacet } from "./FilterableGrid";
+import { t } from "@/lib/i18n/server";
 
 const durationBucket = (days: number) => (days <= 7 ? "short" : days <= 11 ? "mid" : "long");
 
@@ -20,37 +21,37 @@ export function TripsListing({
   if (showRegion && regionSlugs.length > 1) {
     facets.push({
       id: "region",
-      label: "Region",
+      label: t("Region"),
       options: regionSlugs.map((s) => ({ value: s, label: destinationName(s) })),
     });
   }
   facets.push(
     {
       id: "duration",
-      label: "Duration",
+      label: t("Duration"),
       options: [
-        { value: "short", label: "Up to 7 days" },
-        { value: "mid", label: "8–11 days" },
-        { value: "long", label: "12+ days" },
+        { value: "short", label: t("Up to 7 days") },
+        { value: "mid", label: t("8–11 days") },
+        { value: "long", label: t("12+ days") },
       ],
     },
     {
       id: "budget",
-      label: "Budget",
-      options: (["value", "premium", "ultra"] as const).map((t) => ({ value: t, label: tierLabel[t] })),
+      label: t("Budget"),
+      options: (["value", "premium", "ultra"] as const).map((tier) => ({ value: tier, label: t(tierLabel[tier]) })),
     },
   );
 
   return (
     <FilterableGrid
       facets={facets}
-      noun={["trip", "trips"]}
+      noun={[t("trip"), t("trips")]}
       gridClass={gridClass}
       sorts={[
-        { id: "recommended", label: "Recommended" },
-        { id: "price", label: "Price: low to high" },
-        { id: "priceDesc", label: "Price: high to low", dir: "desc" },
-        { id: "days", label: "Shortest first" },
+        { id: "recommended", label: t("Recommended") },
+        { id: "price", label: t("Price: low to high") },
+        { id: "priceDesc", label: t("Price: high to low"), dir: "desc" },
+        { id: "days", label: t("Shortest first") },
       ]}
       entries={trips.map((t) => ({
         key: t.slug,

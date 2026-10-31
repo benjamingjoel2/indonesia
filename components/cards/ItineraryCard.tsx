@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import type { Itinerary } from "@/data/types";
 import { destinationLabel } from "@/lib/data";
 import { Icon } from "@/components/ui/Icon";
 import { Price } from "@/components/ui/Price";
+import { t } from "@/lib/i18n/server";
 
 export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -19,14 +20,14 @@ export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; head
         />
         {it.badge && (
           <span className="absolute left-3 top-3 rounded-sm bg-paper px-2.5 py-1 text-xs font-medium text-jungle-900">
-            {it.badge}
+            {t(it.badge)}
           </span>
         )}
       </Link>
       <div className="flex flex-1 flex-col p-6">
         <p className="flex flex-wrap gap-2 text-xs">
-          <span className="rounded-sm bg-sand-100 px-2 py-1 font-medium">{it.durationDays} days</span>
-          <span className="rounded-sm bg-sand-100 px-2 py-1">Indonesia · {destinationLabel(it.destinations.slice(0, 2))}</span>
+          <span className="rounded-sm bg-sand-100 px-2 py-1 font-medium">{t("{n} days", { n: it.durationDays })}</span>
+          <span className="rounded-sm bg-sand-100 px-2 py-1">{t("Indonesia")} · {destinationLabel(it.destinations.slice(0, 2))}</span>
         </p>
         <H className="mt-4 font-display text-display-sm">
           <Link href={`/trips/${it.slug}`} className="after:absolute after:inset-0 hover:underline hover:decoration-1 hover:underline-offset-4 focus-visible:outline-none">
@@ -45,13 +46,13 @@ export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; head
         <div className="mt-auto pt-6">
           <div className="border-t border-sand-300 pt-4">
             <p className="text-sm text-ink-soft">
-              From <Price usd={it.priceFromUSD} className="font-display text-2xl text-ink" /> per person
+              {t("From")}{" "}<Price usd={it.priceFromUSD} className="font-display text-2xl text-ink" />{" "}{t("per person")}
             </p>
             <p className="mt-1 text-xs text-ink-soft">
-              ≈ <Price usd={it.priceFromUSD * 2} /> for two · international flights excluded
+              {t("From ≈")}{" "}<Price usd={it.priceFromUSD * 2} />{" "}{t("for two · international flights excluded")}
             </p>
             <p className="link-arrow mt-4 text-[0.8125rem]">
-              View itinerary <Icon name="arrow" size={16} />
+              {t("View itinerary")}{" "}<Icon name="arrow" size={16} />
             </p>
           </div>
         </div>

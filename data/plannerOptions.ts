@@ -53,7 +53,6 @@ export const budgetOptions: BudgetOption[] = [
 
 export const contactMethods = [
   { id: "email", label: "Email" },
-  { id: "whatsapp", label: "WhatsApp" },
   { id: "phone", label: "Telephone" },
 ] as const;
 

@@ -22,7 +22,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-jungle-950 text-sand-50">
-      <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="-z-20 object-cover" />
+      <Image src={image.src} alt={image.alt} fill priority quality={50} sizes="100vw" className="-z-20 object-cover" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-jungle-950/90 via-jungle-950/45 to-jungle-950/20" />
       <div className="container-edit flex min-h-[32rem] flex-col justify-between gap-16 pb-12 pt-8 md:min-h-[38rem] md:pb-16">
         {crumbs ? <Breadcrumbs items={crumbs} tone="light" /> : <span />}

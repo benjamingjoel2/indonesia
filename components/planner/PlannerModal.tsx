@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import { useRef } from "react";
 import { useFocusTrap, useScrollLock } from "@/lib/hooks";
 import { useUi } from "@/lib/ui-state";
@@ -7,6 +8,7 @@ import { Icon } from "@/components/ui/Icon";
 import { PlannerForm, type RegionImages } from "./PlannerForm";
 
 export function PlannerModal({ regionImages, intro }: { regionImages: RegionImages; intro: React.ReactNode }) {
+  const { t } = useT();
   const { plannerOpen, closePlanner } = useUi();
   const panelRef = useRef<HTMLDivElement>(null);
   useScrollLock(plannerOpen);
@@ -19,7 +21,7 @@ export function PlannerModal({ regionImages, intro }: { regionImages: RegionImag
       <button
         type="button"
         tabIndex={-1}
-        aria-label="Close planner"
+        aria-label={t("Close planner")}
         onClick={closePlanner}
         className="absolute inset-0 h-full w-full animate-fade-in bg-jungle-950/60 backdrop-blur-sm"
       />
@@ -35,7 +37,7 @@ export function PlannerModal({ regionImages, intro }: { regionImages: RegionImag
           type="button"
           onClick={closePlanner}
           className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-paper hover:bg-sand-100"
-          aria-label="Close planner"
+          aria-label={t("Close planner")}
         >
           <Icon name="close" />
         </button>

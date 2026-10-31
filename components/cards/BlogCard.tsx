@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import type { BlogPostMeta } from "@/data/types";
+import { formatDate, t } from "@/lib/i18n/server";
 
-export const fmtDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+export const fmtDate = (iso: string) => formatDate(iso);
 
 export function BlogCard({ p }: { p: BlogPostMeta }) {
   return (
@@ -18,7 +18,7 @@ export function BlogCard({ p }: { p: BlogPostMeta }) {
         />
       </div>
       <p className="eyebrow mt-5 text-lagoon-500">
-        {p.category} · {p.readingMinutes} min read
+        {p.category} · {t("{n} min read", { n: p.readingMinutes })}
       </p>
       <h2 className="mt-2 font-display text-display-sm group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
         {p.title}

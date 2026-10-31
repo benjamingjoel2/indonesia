@@ -53,9 +53,9 @@ export function validateStep(step: number, d: PlannerDraft): Errors {
     if (d.contact.name.trim().length < 2) e.name = "Please tell us your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.contact.email)) e.email = "Enter a valid email address.";
     const digits = d.contact.phone.replace(/\D/g, "");
-    const needsPhone = d.contact.methods.some((m) => m === "whatsapp" || m === "phone");
+    const needsPhone = d.contact.methods.some((m) => m === "phone");
     if (needsPhone && (digits.length < 6 || digits.length > 15))
-      e.phone = "Add a phone number so we can reach you on WhatsApp or by phone.";
+      e.phone = "Add a phone number so we can call you.";
     else if (digits && (digits.length < 6 || digits.length > 15)) e.phone = "Check the phone number.";
     if (d.contact.methods.length === 0) e.methods = "Choose at least one way to reach you.";
   }

@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useT } from "@/components/i18n/I18nProvider";
+import Link from "@/components/i18n/Link";
 import { useId, useState } from "react";
 import { postJson } from "@/lib/preview";
 import { Icon } from "@/components/ui/Icon";
+import { emphasize } from "@/components/ui/Heading";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -17,6 +19,7 @@ export function EnquiryForm({
   tripSlug?: string;
   tone?: "dark" | "light";
 }) {
+  const { t } = useT();
   const id = useId();
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -59,10 +62,10 @@ export function EnquiryForm({
       <div role="status" className="flex flex-col justify-center">
         <Icon name="check" size={32} />
         <p className="mt-4 font-display text-display-md">
-          Thank you. We&apos;ll be in <em className="font-light italic">touch</em> soon.
+          {emphasize(t("Thank you. We'll be in *touch* soon."))}
         </p>
         <p className={`mt-3 ${tone === "dark" ? "text-sand-200" : "text-ink-soft"}`}>
-          A specialist will reply by email, usually within the hour during Bali office hours.
+          {t("A specialist will reply by email, usually within the hour during Bali office hours.")}
         </p>
       </div>
     );
@@ -71,7 +74,7 @@ export function EnquiryForm({
   const err = (k: string) =>
     errors[k] ? (
       <p id={`${id}-${k}-err`} className={`mt-1.5 text-sm ${errCls}`}>
-        {errors[k]}
+        {t(errors[k])}
       </p>
     ) : null;
   const a = (k: string) => ({ "aria-invalid": Boolean(errors[k]), "aria-describedby": errors[k] ? `${id}-${k}-err` : undefined });
@@ -79,30 +82,30 @@ export function EnquiryForm({
   return (
     <form onSubmit={submit} noValidate className="grid gap-5 sm:grid-cols-2">
       <div>
-        <label htmlFor={`${id}-name`} className={labelCls}>Full name</label>
+        <label htmlFor={`${id}-name`} className={labelCls}>{t("Full name")}</label>
         <input id={`${id}-name`} name="name" autoComplete="name" className={`mt-2 ${input}`} {...a("name")} />
         {err("name")}
       </div>
       <div>
-        <label htmlFor={`${id}-email`} className={labelCls}>Email</label>
+        <label htmlFor={`${id}-email`} className={labelCls}>{t("Email")}</label>
         <input id={`${id}-email`} name="email" type="email" autoComplete="email" className={`mt-2 ${input}`} {...a("email")} />
         {err("email")}
       </div>
       <div>
-        <label htmlFor={`${id}-phone`} className={labelCls}>Phone (optional)</label>
+        <label htmlFor={`${id}-phone`} className={labelCls}>{t("Phone (optional)")}</label>
         <input id={`${id}-phone`} name="phone" type="tel" autoComplete="tel" className={`mt-2 ${input}`} />
       </div>
       <div>
-        <label htmlFor={`${id}-month`} className={labelCls}>When are you thinking?</label>
-        <input id={`${id}-month`} name="month" placeholder="e.g. July 2027" className={`mt-2 ${input}`} />
+        <label htmlFor={`${id}-month`} className={labelCls}>{t("When are you thinking?")}</label>
+        <input id={`${id}-month`} name="month" placeholder={t("e.g. July 2027")} className={`mt-2 ${input}`} />
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor={`${id}-message`} className={labelCls}>Trip details</label>
+        <label htmlFor={`${id}-message`} className={labelCls}>{t("Trip details")}</label>
         <textarea
           id={`${id}-message`}
           name="message"
           rows={4}
-          placeholder="Who's travelling, how long for, anything you'd change"
+          placeholder={t("Who's travelling, how long for, anything you'd change")}
           className={`mt-2 ${input} h-auto py-3`}
         />
       </div>
@@ -114,14 +117,14 @@ export function EnquiryForm({
             tone === "dark" ? "bg-sand-50 text-jungle-900 hover:bg-sand-200" : "bg-jungle-900 text-sand-50 hover:bg-jungle-700"
           }`}
         >
-          {status === "sending" ? "Sending…" : "Send enquiry"}
+          {status === "sending" ? t("Sending…") : t("Send enquiry")}
           <Icon name="arrow" size={16} />
         </button>
         <p className={`text-xs ${tone === "dark" ? "text-sand-300" : "text-ink-soft"}`}>
-          We&apos;ll only use your details to plan your trip. See our{" "}
-          <Link href="/legal/privacy" className="underline underline-offset-2">privacy policy</Link>.
+          {t("We'll only use your details to plan your trip. See our")}{" "}
+          <Link href="/legal/privacy" className="underline underline-offset-2">{t("privacy policy")}</Link>.
         </p>
-        {status === "error" && <p role="alert" className={`w-full text-sm ${errCls}`}>Something went wrong. Please try again.</p>}
+        {status === "error" && <p role="alert" className={`w-full text-sm ${errCls}`}>{t("Something went wrong. Please try again.")}</p>}
       </div>
     </form>
   );
