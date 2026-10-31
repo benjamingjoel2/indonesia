@@ -1,4 +1,5 @@
 import { destinationName } from "@/lib/data";
+import { t } from "@/lib/i18n/server";
 
 /** Stylised route placeholder. TODO: swap for an interactive map (Mapbox / Google Maps). */
 export function MapPlaceholder({ stops }: { stops: string[] }) {
@@ -20,7 +21,7 @@ export function MapPlaceholder({ stops }: { stops: string[] }) {
           </li>
         ))}
       </ol>
-      <p className="mt-3 text-xs text-ink-soft">Route map placeholder</p>
+      <p className="mt-3 text-xs text-ink-soft">{t("Route overview, not to scale")}</p>
     </div>
   );
 }

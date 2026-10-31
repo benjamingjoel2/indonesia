@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import { site } from "@/data/site";
 
 /** Placeholder wordmark — swap for the real logo SVG. */

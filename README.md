@@ -26,9 +26,19 @@ npm run build
   Article, FAQPage and BreadcrumbList on the relevant pages.
 - `app/opengraph-image.tsx` is the default social sharing card.
 
-## Placeholders to replace before launch
+## Languages
 
-- Brand details, phone, WhatsApp number, email, credentials, badges: `data/site.ts`
-- Exchange rates: `data/currencies.ts`
-- Images: Unsplash URLs in `/data` files
-- Testimonials are marked `placeholder: true`
+English lives at the root URLs; French, German and Spanish are pre-rendered under `/fr`, `/de` and `/es`.
+
+- `app/(en)` holds the pages. `app/fr|de|es` are generated wrappers (`node scripts/gen-locale-routes.mjs`) that set the locale and render the English page module.
+- Copy goes through `t()` / `tx()` (`lib/i18n/server.ts`) on the server and `useT()` in client components; `lib/data.ts` getters return translated data.
+- Translations: `i18n/{fr,de,es}.json` (English string → translation). Blog articles: `content/blog/{fr,de,es}/*.mdx`.
+- `node --experimental-strip-types scripts/i18n-extract.mjs` refreshes `i18n/strings.json` and `i18n/client-keys.json`; add `check` to fail on missing translations. `I18N_COLLECT=1 next build` logs any untranslated string to `i18n/missing.txt`.
+
+## Before launch
+
+- Legal pages (`data/pages.ts`) need a lawyer's review.
+- Stays in `data/stays.ts` are fictional seed content; replace with real partners (and their permitted photography).
+- Exchange rates: `data/currencies.ts`.
+- Images: Unsplash URLs in `/data` files, until the owner's photography is supplied.
+- Enquiry and planner API routes (`app/api`) log submissions; connect email/CRM delivery.

@@ -1,5 +1,6 @@
+import { t } from "@/lib/i18n/server";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import type { Destination } from "@/data/types";
 
 export function DestinationCard({ d, sizes = "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" }: { d: Destination; sizes?: string }) {
@@ -19,7 +20,7 @@ export function DestinationCard({ d, sizes = "(min-width: 1024px) 25vw, (min-wid
         {d.name}
       </h3>
       <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{d.hook}</p>
-      <p className="mt-3 text-sm font-medium">{d.partnerStays} hand-picked stays</p>
+      <p className="mt-3 text-sm font-medium">{t("{n} hand-picked stays", { n: d.partnerStays })}</p>
     </Link>
   );
 }

@@ -6,7 +6,7 @@ export const home = {
     eyebrow: "Tailor-made Indonesia · Since 2011",
     heading: "Seventeen thousand islands. *One* considered journey.",
     intro:
-      "We design private, tailor-made trips across Indonesia, from Bali's rice-terraced uplands to the reefs of Raja Ampat. One dedicated travel specialist plans every detail with you, then stays on WhatsApp until you're home.",
+      "We design private, tailor-made trips across Indonesia, from Bali's rice-terraced uplands to the reefs of Raja Ampat. One dedicated travel specialist plans every detail with you, then stays in touch until you're home.",
     image: {
       src: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2400&q=80",
       alt: "Morning light over a Balinese temple gate with mountains behind",
@@ -19,7 +19,7 @@ export const home = {
     { title: "15 years on the islands", text: "Founded in Bali in 2011, with offices in Bali and Jakarta." },
     { title: "320 partner stays & boats", text: "Villas, eco-lodges and phinisi we have stayed on ourselves." },
     { title: "Fair, transparent pricing", text: "Our rates match booking direct. The planning costs you nothing." },
-    { title: "24/7 WhatsApp support", text: "A real person on the ground, any hour, from arrival to departure." },
+    { title: "24/7 support", text: "A real person on the ground, any hour, from arrival to departure." },
     { title: "40+ islands covered", text: "From Sumatra in the west to Papua in the east." },
   ],
   destinations: {
@@ -60,7 +60,7 @@ export const home = {
     text: "Seasons island by island, sample routes, the stays we love and practical notes on getting around. Sent to your inbox as a PDF.",
     cover: {
       src: "https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=900&q=80",
-      alt: "Brochure cover placeholder showing Balinese rice terraces",
+      alt: "Brochure cover showing Balinese rice terraces",
     } satisfies Img,
   },
   finalCta: {

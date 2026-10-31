@@ -1,5 +1,6 @@
+import { t } from "@/lib/i18n/server";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import type { Experience } from "@/data/types";
 import { destinationName } from "@/lib/data";
 import { Icon } from "@/components/ui/Icon";
@@ -23,7 +24,7 @@ export function ExperienceCard({ e }: { e: Experience }) {
         <h3 className="font-display text-display-sm">{e.name}</h3>
         <p className="mt-1.5 text-sm text-sand-200">{places}</p>
         <p className="mt-4 flex items-center justify-between border-t border-sand-50/25 pt-3 text-sm">
-          <span>{e.tripCount} trips</span>
+          <span>{t("{n} trips", { n: e.tripCount })}</span>
           <Icon name="arrow" size={16} className="transition-transform group-hover:translate-x-1" />
         </p>
       </div>

@@ -1,5 +1,6 @@
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import { site } from "@/data/site";
+import { lhref, t } from "@/lib/i18n/server";
 
 export interface Crumb {
   label: string;
@@ -10,19 +11,19 @@ export function Breadcrumbs({ items, tone = "dark" }: { items: Crumb[]; tone?: "
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [{ label: "Home", href: "/" }, ...items].map((c, i) => ({
+    itemListElement: [{ label: t("Home"), href: "/" }, ...items].map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: c.label,
-      item: `${site.url}${c.href}`,
+      item: `${site.url}${lhref(c.href)}`,
     })),
   };
   return (
-    <nav aria-label="Breadcrumb" className={`text-sm ${tone === "light" ? "text-sand-200" : "text-ink-soft"}`}>
+    <nav aria-label={t("Breadcrumb")} className={`text-sm ${tone === "light" ? "text-sand-200" : "text-ink-soft"}`}>
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         <li>
           <Link href="/" className="hover:underline hover:underline-offset-4">
-            Home
+            {t("Home")}
           </Link>
         </li>
         {items.map((c, i) => (

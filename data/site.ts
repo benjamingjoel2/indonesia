@@ -15,7 +15,7 @@ function siteUrl(): string {
 
 /**
  * Brand, contact details and navigation.
- * Everything in [square brackets] is a placeholder to replace before launch.
+ * Brand details, address and navigation.
  */
 export const site = {
   name: "The Island Edit",
@@ -26,27 +26,25 @@ export const site = {
     "Tailor-made Indonesia journeys, planned end to end by one dedicated travel specialist. Bali, Komodo, Raja Ampat, Java and beyond.",
   blurb:
     "The Island Edit plans private, tailor-made journeys across the Indonesian archipelago. One specialist, from first message to last transfer.",
-  phone: "+62 361 000 0000", // [placeholder]
-  phoneHref: "tel:+623610000000",
-  whatsapp: "6281200000000", // [NUMBER] digits only, used in wa.me links
-  email: "hello@theislandedit.tourground.com",
-  credential: "[Award / credential placeholder] · Licensed Indonesian tour operator",
+  email: "theislandedit@tourground.com",
+  /** Business address: The Executive Centre, Pacific Century Place, Jakarta. No phone number is published. */
+  address: {
+    name: "The Executive Centre, Pacific Century Place",
+    street: "SCBD Lot 10, Jl. Jend. Sudirman Kav. 52–53",
+    locality: "Jakarta",
+    postalCode: "12190",
+    country: "Indonesia",
+    countryCode: "ID",
+  },
+  tagline: "Private, tailor-made Indonesia, planned by one specialist",
   replyPromise: "Replies in as little as 15 minutes",
-  rating: { score: 4.9, count: 640, source: "[Review platform]" },
   founded: 2011,
-  socials: [
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "Facebook", href: "https://facebook.com/" },
-    { label: "YouTube", href: "https://youtube.com/" },
-    { label: "LinkedIn", href: "https://linkedin.com/" },
-  ] satisfies NavLink[],
-  memberships: ["ASITA member", "[Sustainable travel cert.]", "[Industry body]"],
   promo:
-    "Included on every trip confirmed before 31 March 2027: private airport arrival, a local SIM and 24/7 WhatsApp support from your specialist.",
+    "Included on every trip confirmed before 31 March 2027: private airport arrival, a local SIM and 24/7 support from your specialist.",
 } as const;
 
-export const whatsappHref = (text?: string) =>
-  `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+/** The business address as display lines. */
+export const addressLines = [site.address.name, site.address.street, `${site.address.locality} ${site.address.postalCode}`, site.address.country];
 
 /* ---------- Navigation ---------- */
 
@@ -105,14 +103,7 @@ export const aboutMenu: NavGroup[] = [
     links: [
       { label: "Why travel with us", href: "/why-travel-with-us" },
       { label: "Our story", href: "/about" },
-      { label: "Meet the team", href: "/about#team" },
       { label: "Sustainability", href: "/sustainability" },
-    ],
-  },
-  {
-    title: "From our guests",
-    links: [
-      { label: "Testimonials", href: "/testimonials" },
       { label: "Blog", href: "/blog" },
     ],
   },
@@ -166,7 +157,6 @@ export const footerColumns: NavGroup[] = [
     links: [
       { label: "Why travel with us", href: "/why-travel-with-us" },
       { label: "Our story", href: "/about" },
-      { label: "Meet the team", href: "/about#team" },
       { label: "Sustainability", href: "/sustainability" },
       { label: "Contact", href: "/contact" },
     ],
@@ -176,7 +166,6 @@ export const footerColumns: NavGroup[] = [
     links: [
       { label: "Plan your trip", href: "/plan-your-trip" },
       { label: "FAQ", href: "/faq" },
-      { label: "Testimonials", href: "/testimonials" },
       { label: "Blog", href: "/blog" },
       { label: "Private & bespoke travel", href: "/private-travel" },
     ],
@@ -184,7 +173,7 @@ export const footerColumns: NavGroup[] = [
 ];
 
 export const legalLinks: NavLink[] = [
-  { label: "Terms of use", href: "/legal/terms" },
+  { label: "Booking terms", href: "/legal/booking-terms" },
   { label: "Privacy policy", href: "/legal/privacy" },
   { label: "Cookie policy", href: "/legal/cookies" },
 ];

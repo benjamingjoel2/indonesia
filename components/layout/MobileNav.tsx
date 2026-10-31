@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useT } from "@/components/i18n/I18nProvider";
+import Link from "@/components/i18n/Link";
 import { useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -8,17 +9,18 @@ import {
   destinationsMenu,
   experiencesMenu,
   site,
-  whatsappHref,
 } from "@/data/site";
 import type { NavGroup, NavLink } from "@/data/types";
 import { useFocusTrap, useScrollLock } from "@/lib/hooks";
 import { useUi } from "@/lib/ui-state";
 import { Button } from "@/components/ui/Button";
-import { Icon, WhatsAppIcon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
 import { CurrencySwitcher } from "./CurrencySwitcher";
 import { Logo } from "./Logo";
+import { LanguageSelector } from "@/components/i18n/LanguageSelector";
 
 export function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { t, tx } = useT();
   const panelRef = useRef<HTMLDivElement>(null);
   const { openPlanner } = useUi();
   useScrollLock(open);
@@ -32,7 +34,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
     <div className="fixed inset-0 z-[60] lg:hidden">
       <button
         type="button"
-        aria-label="Close menu"
+        aria-label={t("Close menu")}
         tabIndex={-1}
         onClick={onClose}
         className="absolute inset-0 h-full w-full animate-fade-in bg-jungle-950/50"
@@ -42,7 +44,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
         id="mobile-nav"
         role="dialog"
         aria-modal="true"
-        aria-label="Site menu"
+        aria-label={t("Site menu")}
         className="absolute inset-y-0 right-0 flex w-full max-w-md animate-slide-in flex-col bg-paper"
       >
         <div className="flex h-16 items-center justify-between border-b border-sand-300 px-5">
@@ -52,38 +54,39 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
             onClick={onClose}
             autoFocus
             className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100"
-            aria-label="Close menu"
+            aria-label={t("Close menu")}
           >
             <Icon name="close" />
           </button>
         </div>
 
-        <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 pb-8">
-          <Accordion title="Destinations">
-            {destinationsMenu.map((g) => (
+        <nav aria-label={t("Mobile")} className="flex-1 overflow-y-auto px-5 pb-8">
+          <LanguageSelector className="border-b border-sand-300 py-4 text-sm" />
+          <Accordion title={t("Destinations")}>
+            {tx(destinationsMenu).map((g) => (
               <GroupLinks key={g.title} group={g} />
             ))}
             <SimpleLink href="/destinations" strong>
-              View all destinations
+              {t("View all destinations")}
             </SimpleLink>
           </Accordion>
-          <SimpleRow href="/trips">Trips</SimpleRow>
-          <Accordion title="Experiences">
-            <LinkList links={experiencesMenu} />
+          <SimpleRow href="/trips">{t("Trips")}</SimpleRow>
+          <Accordion title={t("Experiences")}>
+            <LinkList links={tx(experiencesMenu)} />
             <SimpleLink href="/experiences" strong>
-              All experiences
+              {t("All experiences")}
             </SimpleLink>
           </Accordion>
-          <SimpleRow href="/stays">Stays</SimpleRow>
-          <Accordion title="About">
-            {aboutMenu.map((g) => (
+          <SimpleRow href="/stays">{t("Stays")}</SimpleRow>
+          <Accordion title={t("About")}>
+            {tx(aboutMenu).map((g) => (
               <GroupLinks key={g.title} group={g} />
             ))}
           </Accordion>
-          <SimpleRow href="/contact">Contact</SimpleRow>
+          <SimpleRow href="/contact">{t("Contact")}</SimpleRow>
 
           <div className="mt-6 flex items-center justify-between rounded-sm bg-sand-100 px-4 py-2">
-            <span className="text-sm text-ink-soft">Currency</span>
+            <span className="text-sm text-ink-soft">{t("Currency")}</span>
             <CurrencySwitcher id="currency-mobile" />
           </div>
 
@@ -95,18 +98,10 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               }}
               arrow
             >
-              Start planning
+              {t("Start planning")}
             </Button>
-            <a
-              href={whatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-jungle-900 px-5 text-[0.8125rem] font-medium"
-            >
-              <WhatsAppIcon size={18} /> Chat on WhatsApp
-            </a>
-            <a href={site.phoneHref} className="text-center text-sm text-ink-soft underline-offset-4 hover:underline">
-              {site.phone}
+            <a href={`mailto:${site.email}`} className="text-center text-sm text-ink-soft underline-offset-4 hover:underline">
+              {site.email}
             </a>
           </div>
         </nav>

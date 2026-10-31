@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useT } from "@/components/i18n/I18nProvider";
+import Link from "@/components/i18n/Link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useFocusTrap, useScrollLock } from "@/lib/hooks";
@@ -21,6 +22,7 @@ const plural: Record<SearchKind, string> = {
 const suggestions = ["Bali", "Komodo", "Raja Ampat", "Honeymoon", "Phinisi", "Orangutan"];
 
 export function SearchOverlay({ index }: { index: SearchItem[] }) {
+  const { t } = useT();
   const { searchOpen, closeSearch } = useUi();
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +82,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
       <button
         type="button"
         tabIndex={-1}
-        aria-label="Close search"
+        aria-label={t("Close search")}
         onClick={closeSearch}
         className="absolute inset-0 h-full w-full animate-fade-in bg-jungle-950/60 backdrop-blur-sm"
       />
@@ -88,7 +90,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Search The Island Edit"
+        aria-label={t("Search The Island Edit")}
         className="relative mx-auto mt-0 flex max-h-[100dvh] w-full max-w-3xl animate-fade-in flex-col bg-paper sm:mt-[10vh] sm:max-h-[75vh] sm:rounded-sm sm:shadow-2xl"
       >
         <div className="flex items-center gap-3 border-b border-sand-300 px-5 py-4">
@@ -101,8 +103,8 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
             aria-controls={listId}
             aria-activedescendant={flat[active] ? optionId(active) : undefined}
             aria-autocomplete="list"
-            aria-label="Search destinations, trips, stays, experiences and articles"
-            placeholder="Search destinations, stays, experiences…"
+            aria-label={t("Search destinations, trips, stays, experiences and articles")}
+            placeholder={t("Search destinations, stays, experiences…")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
@@ -113,7 +115,7 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
             type="button"
             onClick={closeSearch}
             className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100 sm:hidden"
-            aria-label="Close search"
+            aria-label={t("Close search")}
           >
             <Icon name="close" />
           </button>
@@ -122,16 +124,16 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
         <div className="overflow-y-auto px-5 py-5">
           {query.trim() === "" ? (
             <div>
-              <p className="eyebrow mb-3 text-ink-soft">Popular searches</p>
+              <p className="eyebrow mb-3 text-ink-soft">{t("Popular searches")}</p>
               <ul className="flex flex-wrap gap-2">
                 {suggestions.map((s) => (
                   <li key={s}>
                     <button
                       type="button"
-                      onClick={() => setQuery(s)}
+                      onClick={() => setQuery(t(s))}
                       className="rounded-full border border-sand-300 px-4 py-2 text-sm hover:border-jungle-900"
                     >
-                      {s}
+                      {t(s)}
                     </button>
                   </li>
                 ))}
@@ -139,23 +141,23 @@ export function SearchOverlay({ index }: { index: SearchItem[] }) {
             </div>
           ) : flat.length === 0 ? (
             <div className="py-6 text-center">
-              <p className="font-display text-xl">Nothing found for “{query}”.</p>
+              <p className="font-display text-xl">{t("Nothing found for “{query}”.", { query })}</p>
               <p className="mt-2 text-sm text-ink-soft">
-                Try a place or a kind of trip, or{" "}
+                {t("Try a place or a kind of trip, or")}{" "}
                 <Link href="/plan-your-trip" onClick={closeSearch} className="underline underline-offset-4">
-                  ask a specialist
+                  {t("ask a specialist")}
                 </Link>
                 .
               </p>
             </div>
           ) : (
-            <ul id={listId} role="listbox" aria-label="Search results" className="space-y-6">
+            <ul id={listId} role="listbox" aria-label={t("Search results")} className="space-y-6">
               {grouped.map((g) => (
                 <li key={g.kind} role="presentation">
                   <p className="eyebrow mb-2 text-ink-soft" aria-hidden="true">
-                    {plural[g.kind]}
+                    {t(plural[g.kind])}
                   </p>
-                  <ul role="group" aria-label={plural[g.kind]}>
+                  <ul role="group" aria-label={t(plural[g.kind])}>
                     {g.items.map((item) => {
                       const i = flat.indexOf(item);
                       const isActive = i === active;

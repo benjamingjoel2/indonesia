@@ -53,7 +53,6 @@ export const experiences: Experience[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1650445363412-275a423da839?auto=format&fit=crop&w=1800&q=80",
       alt: "A wooden phinisi schooner under red sails on blue water near a rocky headland",
-      credit: "Photo: Johnny Africa / Unsplash",
     },
     destinations: ["komodo", "raja-ampat", "flores", "maluku"],
     highlights: [
@@ -130,7 +129,6 @@ export const experiences: Experience[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1752769041956-1af511b2a225?auto=format&fit=crop&w=1800&q=80",
       alt: "A family relaxing on a garden lounger beside a swimming pool among tropical plants",
-      credit: "Photo: Ari Kurniawan / Unsplash",
     },
     destinations: ["bali", "lombok-gilis", "yogyakarta", "komodo"],
     highlights: [
@@ -207,7 +205,6 @@ export const experiences: Experience[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1723153247780-02e191e1dd0c?auto=format&fit=crop&w=1800&q=80",
       alt: "An orangutan sitting among branches in dense rainforest",
-      credit: "Photo: Nick Reijrink / Unsplash",
     },
     destinations: ["sumatra", "kalimantan", "lake-toba"],
     highlights: [
@@ -360,7 +357,6 @@ export const experiences: Experience[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1702664045144-8c97b3034d26?auto=format&fit=crop&w=1800&q=80",
       alt: "Aerial view of forested limestone islets and turquoise lagoons in Raja Ampat",
-      credit: "Photo: Simon Spring / Unsplash",
     },
     destinations: ["lombok-gilis", "komodo", "raja-ampat", "nusa-penida", "flores"],
     highlights: [

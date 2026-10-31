@@ -4,6 +4,20 @@ import type { NextConfig } from "next";
 const staticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1";
 
 const nextConfig: NextConfig = {
+  // Every locale has its own root layout (app/(en), app/fr, app/de, app/es); this page covers
+  // URLs that match none of them.
+  experimental: { globalNotFound: true },
+  // Pages removed in the October 2026 fixes; old links land somewhere useful.
+  ...(staticPreview
+    ? {}
+    : {
+        async redirects() {
+          return ["", "/fr", "/de", "/es"].flatMap((p) => [
+            { source: `${p}/testimonials`, destination: `${p}/about`, permanent: true },
+            { source: `${p}/legal/terms`, destination: `${p}/legal/booking-terms`, permanent: true },
+          ]);
+        },
+      }),
   ...(staticPreview ? { output: "export" as const } : {}),
   images: staticPreview
     ? { unoptimized: true }

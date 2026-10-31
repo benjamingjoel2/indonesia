@@ -10,7 +10,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "How does planning a tailor-made trip work?",
-        a: "You tell us when you would like to travel, who is coming and what matters to you, and one travel specialist drafts a first itinerary with prices, usually within two working days. We then refine it together by email, call or WhatsApp until it feels right. Nothing is booked until you are happy with every detail.",
+        a: "You tell us when you would like to travel, who is coming and what matters to you, and one travel specialist drafts a first itinerary with prices, usually within two working days. We then refine it together by email or call until it feels right. Nothing is booked until you are happy with every detail.",
       },
       {
         q: "When is the best time to visit Indonesia?",
@@ -35,7 +35,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Who will look after us during the trip?",
-        a: "You will have private drivers and, where it adds something, licensed local guides throughout, rather than shared tours. Your specialist and our Bali-based team are on WhatsApp 24/7 while you travel, so a delayed flight or a change of plan is handled in minutes rather than hours.",
+        a: "You will have private drivers and, where it adds something, licensed local guides throughout, rather than shared tours. Your specialist and our Bali-based team are on hand 24/7 while you travel, so a delayed flight or a change of plan is handled in minutes rather than hours.",
       },
       {
         q: "How do we get between the islands?",
