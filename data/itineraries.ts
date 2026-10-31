@@ -176,23 +176,19 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1653404786584-2166b81a5b3c?auto=format&fit=crop&w=1800&q=80",
       alt: "Aerial view of a two-masted phinisi anchored in a clear turquoise bay below green hills",
-      credit: "Photo: Johnny Africa / Unsplash",
     },
     gallery: [
       {
         src: "https://images.unsplash.com/photo-1725073696774-dc3c2dc0a35e?auto=format&fit=crop&w=1800&q=80",
         alt: "A Komodo dragon lying on a sandy beach in front of a wooden jetty",
-        credit: "Photo: Vivien Placzek / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1736478772941-8da5e214dea5?auto=format&fit=crop&w=1800&q=80",
         alt: "Aerial view of a pink-sand beach curving along turquoise water in Komodo National Park",
-        credit: "Photo: Simon Spring / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1623468020653-b0682380e56b?auto=format&fit=crop&w=1800&q=80",
         alt: "A manta ray gliding through blue water above the reef",
-        credit: "Photo: Swanson Chan / Unsplash",
       },
     ],
     summary:
@@ -214,7 +210,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1696488997773-3982fd023c20?auto=format&fit=crop&w=1800&q=80",
           alt: "Boats moored in the harbour at Labuan Bajo below a dry, terraced hillside",
-          credit: "Photo: Wayan Aditya / Unsplash",
         },
       },
       {
@@ -290,7 +285,6 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1703769605314-18648cfc3428?auto=format&fit=crop&w=1800&q=80",
       alt: "Small forested karst islands rising from a turquoise lagoon in Raja Ampat",
-      credit: "Photo: Simon Spring / Unsplash",
     },
     gallery: [
       {
@@ -300,12 +294,10 @@ export const itineraries: Itinerary[] = [
       {
         src: "https://images.unsplash.com/photo-1715940094024-b704b7493be4?auto=format&fit=crop&w=1800&q=80",
         alt: "A small wooden canoe on clear green water in front of a beach with thatched huts",
-        credit: "Photo: r0229 oke / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=1800&q=80",
         alt: "A speedboat crossing a lagoon between steep green islets",
-        credit: "Photo: Ridho Ibrahim / Unsplash",
       },
     ],
     summary:
@@ -335,7 +327,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1724258207520-7870359e112a?auto=format&fit=crop&w=1800&q=80",
           alt: "A long wooden jetty crossing a shallow reef to overwater bungalows",
-          credit: "Photo: SnapSaga / Unsplash",
         },
       },
       {
@@ -422,7 +413,6 @@ export const itineraries: Itinerary[] = [
       {
         src: "https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?auto=format&fit=crop&w=1800&q=80",
         alt: "The stone spires of Prambanan temple under a bright blue sky",
-        credit: "Photo: Eugenia Clara / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1505993597083-3bd19fb75e57?auto=format&fit=crop&w=1800&q=80",
@@ -575,7 +565,6 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1571366343168-631c5bcca7a4?auto=format&fit=crop&w=1800&q=80",
       alt: "Golden evening light on the ridges and bays of Padar Island in Komodo National Park",
-      credit: "Photo: Rizknas / Unsplash",
     },
     gallery: [
       {
@@ -585,7 +574,6 @@ export const itineraries: Itinerary[] = [
       {
         src: "https://images.unsplash.com/photo-1589309736404-2e142a2acdf0?auto=format&fit=crop&w=1800&q=80",
         alt: "Dusk over the bays and hills of Komodo National Park seen from a ridge",
-        credit: "Photo: william kusno / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1800&q=80",
@@ -637,7 +625,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1604560929658-bbc3c2ba6a36?auto=format&fit=crop&w=1800&q=80",
           alt: "The three bays of Padar Island seen from the ridge, with green hills and blue water",
-          credit: "Photo: Fajruddin Mudzakkir / Unsplash",
         },
       },
       {
@@ -719,13 +706,11 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1754546784315-c9ba50caa7e9?auto=format&fit=crop&w=1800&q=80",
       alt: "An orangutan resting in the branches of a rainforest tree",
-      credit: "Photo: Arne Wambeke / Unsplash",
     },
     gallery: [
       {
         src: "https://images.unsplash.com/photo-1601058497548-f247dfe349d6?auto=format&fit=crop&w=1800&q=80",
         alt: "Green hills and a winding valley running down to Lake Toba",
-        credit: "Photo: Irfannur Diah / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1537871285173-eb73c57c6ef4?auto=format&fit=crop&w=1800&q=80",
@@ -734,7 +719,6 @@ export const itineraries: Itinerary[] = [
       {
         src: "https://images.unsplash.com/photo-1553515831-1ee03d85e31c?auto=format&fit=crop&w=1800&q=80",
         alt: "The steep upswept roof of a traditional Batak house above Lake Toba",
-        credit: "Photo: Leo Sagala / Unsplash",
       },
     ],
     summary:
@@ -761,7 +745,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1723153437528-d9ac530fa1f7?auto=format&fit=crop&w=1800&q=80",
           alt: "An adult male orangutan with broad cheek pads among rainforest leaves",
-          credit: "Photo: Nick Reijrink / Unsplash",
         },
       },
       {
@@ -791,7 +774,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1440558929809-1412944a6225?auto=format&fit=crop&w=1800&q=80",
           alt: "Lake Toba stretching between green hills under a wide sky",
-          credit: "Photo: Dio Hasibuan / Unsplash",
         },
       },
       {
@@ -858,23 +840,19 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1578019448201-09ad2ac7995a?auto=format&fit=crop&w=1800&q=80",
       alt: "Cone-shaped thatched houses of Wae Rebo village in a mountain clearing beneath low cloud",
-      credit: "Photo: Marcella Oscar / Unsplash",
     },
     gallery: [
       {
         src: "https://images.unsplash.com/photo-1678150913309-cbebdf17d804?auto=format&fit=crop&w=1800&q=80",
         alt: "A group of horses running along a rocky beach in Sumba",
-        credit: "Photo: Deepavali Gaind / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1776442564181-fd60b00b9afc?auto=format&fit=crop&w=1800&q=80",
         alt: "Traditional Sumbanese houses with tall peaked thatched roofs around a sandy clearing",
-        credit: "Photo: Wahde Stock / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1586730657455-fbb1d1bcf7e5?auto=format&fit=crop&w=1800&q=80",
         alt: "Rice terraces covering rolling green hills in western Flores",
-        credit: "Photo: Jan Kaptein / Unsplash",
       },
     ],
     summary:
@@ -901,7 +879,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1660280274563-767dd6b56374?auto=format&fit=crop&w=1800&q=80",
           alt: "A Komodo dragon walking along a pale sand beach at the water's edge",
-          credit: "Photo: Mitch Hodiono / Unsplash",
         },
       },
       {
@@ -939,7 +916,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1618479357329-14dd10e76f5e?auto=format&fit=crop&w=1800&q=80",
           alt: "Clear turquoise lagoon water beside a wooden platform and steps among green scrub",
-          credit: "Photo: Delphine Fant / Unsplash",
         },
       },
       {
@@ -1016,18 +992,15 @@ export const itineraries: Itinerary[] = [
     heroImage: {
       src: "https://images.unsplash.com/photo-1619681216575-d6b3964fc278?auto=format&fit=crop&w=1800&q=80",
       alt: "Aerial view of a small Gili island ringed by white sand and shallow turquoise reef",
-      credit: "Photo: Danny de Groot / Unsplash",
     },
     gallery: [
       {
         src: "https://images.unsplash.com/photo-1709483095301-2d1f3e95b1d4?auto=format&fit=crop&w=1800&q=80",
         alt: "A green sea turtle swimming over a reef in clear blue water",
-        credit: "Photo: Sébastien Goldberg / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1694637173869-72c51857c6e9?auto=format&fit=crop&w=1800&q=80",
         alt: "A wide white-sand beach with turquoise water and a boat in the distance",
-        credit: "Photo: Baptiste P / Unsplash",
       },
       {
         src: "https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1800&q=80",
@@ -1083,7 +1056,6 @@ export const itineraries: Itinerary[] = [
         image: {
           src: "https://images.unsplash.com/photo-1581773683195-b36cada8b4d2?auto=format&fit=crop&w=1800&q=80",
           alt: "A sea turtle resting on the sandy seabed in clear shallow water",
-          credit: "Photo: Uber Scuba Gili / Unsplash",
         },
       },
       {

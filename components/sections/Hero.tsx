@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { home } from "@/data/home";
+import { home as homeEn } from "@/data/home";
 import { site } from "@/data/site";
 import { Heading } from "@/components/ui/Heading";
 import { LinkButton } from "@/components/ui/Button";
 import { PlanButton } from "@/components/ui/PlanButton";
 import { Icon } from "@/components/ui/Icon";
+import { t, tx } from "@/lib/i18n/server";
 
 export function Hero() {
-  const { hero } = home;
+  const { hero } = tx(homeEn);
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-jungle-950 text-sand-50">
       {hero.videoSrc ? (
@@ -28,6 +29,7 @@ export function Hero() {
         alt={hero.image.alt}
         fill
         priority
+        quality={50}
         sizes="100vw"
         className={`-z-20 object-cover ${hero.videoSrc ? "motion-safe:hidden" : ""}`}
       />
@@ -43,19 +45,19 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-sand-100 md:text-xl">{hero.intro}</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <PlanButton variant="light" arrow>
-              Start planning
+              {t("Start planning")}
             </PlanButton>
             <LinkButton href="/why-travel-with-us" variant="outline-light" arrow>
-              How we work
+              {t("How we work")}
             </LinkButton>
           </div>
         </div>
 
         <div className="mt-14 flex items-start gap-3 border-t border-sand-50/25 pt-5 text-sm text-sand-100 md:mt-20">
           <span className="eyebrow mt-0.5 shrink-0 rounded-sm bg-sand-50/15 px-2 py-1 text-[0.6875rem] text-sand-50">
-            Included
+            {t("Included")}
           </span>
-          <p className="max-w-3xl">{site.promo}</p>
+          <p className="max-w-3xl">{t(site.promo)}</p>
           <Icon name="check" size={18} className="ml-auto hidden shrink-0 md:block" />
         </div>
       </div>

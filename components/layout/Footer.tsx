@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { footerColumns, legalLinks, site, whatsappHref } from "@/data/site";
-import { Icon, WhatsAppIcon } from "@/components/ui/Icon";
+import Link from "@/components/i18n/Link";
+import { addressLines, footerColumns, legalLinks, site } from "@/data/site";
+import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
+import { t, tx } from "@/lib/i18n/server";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -12,34 +13,25 @@ export function Footer() {
           {/* Brand block */}
           <div className="max-w-sm">
             <Logo tone="light" />
-            <p className="mt-5 text-[0.8125rem] leading-relaxed text-sand-200">{site.blurb}</p>
+            <p className="mt-5 text-[0.8125rem] leading-relaxed text-sand-200">{t(site.blurb)}</p>
             <ul className="mt-6 space-y-2 text-[0.8125rem]">
-              <li>
-                <a href={site.phoneHref} className="inline-flex items-center gap-2.5 hover:text-white">
-                  <Icon name="phone" size={16} /> {site.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={whatsappHref()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 hover:text-white"
-                >
-                  <WhatsAppIcon size={16} /> WhatsApp us
-                </a>
-              </li>
               <li>
                 <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2.5 hover:text-white">
                   <Icon name="mail" size={16} /> {site.email}
                 </a>
               </li>
+              <li>
+                <address className="inline-flex gap-2.5 not-italic text-sand-200">
+                  <Icon name="pin" size={16} className="mt-0.5 shrink-0" />
+                  <span>{addressLines.join(", ")}</span>
+                </address>
+              </li>
             </ul>
           </div>
 
           {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-5">
-            {footerColumns.map((col) => (
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
+            {tx(footerColumns).map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <h2 className="eyebrow mb-4 text-sand-400">{col.title}</h2>
                 <ul className="space-y-2.5 text-[0.8125rem]">
@@ -53,56 +45,16 @@ export function Footer() {
                 </ul>
               </nav>
             ))}
-            <nav aria-label="Connect">
-              <h2 className="eyebrow mb-4 text-sand-400">Connect</h2>
-              <ul className="space-y-2.5 text-[0.8125rem]">
-                {site.socials.map((s) => (
-                  <li key={s.label}>
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sand-100 hover:text-white hover:underline hover:underline-offset-4"
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
-        </div>
-
-        {/* Badges */}
-        <div className="mt-14 flex flex-wrap items-center gap-4 border-t border-jungle-700 pt-10">
-          <div className="flex items-center gap-3 rounded-sm border border-jungle-600 px-4 py-3">
-            <span className="flex text-sand-300" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Icon key={i} name="star" size={16} />
-              ))}
-            </span>
-            <span className="text-sm">
-              <strong className="font-semibold">{site.rating.score}</strong> / 5 from{" "}
-              {site.rating.count.toLocaleString("en-US")} reviews on {site.rating.source}
-            </span>
-          </div>
-          {site.memberships.map((m) => (
-            <div
-              key={m}
-              className="rounded-sm border border-dashed border-jungle-600 px-4 py-3 text-xs uppercase tracking-[0.14em] text-sand-300"
-            >
-              {m}
-            </div>
-          ))}
         </div>
 
         {/* Legal */}
-        <div className="mt-10 flex flex-col gap-4 text-sm text-sand-300 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 border-t border-jungle-700 pt-10 flex flex-col gap-4 text-sm text-sand-300 md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {site.name}. All rights reserved. [Company registration / licence no. placeholder]
+            © {year} {site.name}. {t("All rights reserved.")}
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {legalLinks.map((l) => (
+            {tx(legalLinks).map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-white hover:underline hover:underline-offset-4">
                   {l.label}

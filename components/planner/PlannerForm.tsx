@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import {
@@ -22,6 +23,7 @@ import {
 import { postJson } from "@/lib/preview";
 import { readStorage, removeStorage, writeStorage } from "@/lib/storage";
 import { Button } from "@/components/ui/Button";
+import { emphasize } from "@/components/ui/Heading";
 import { Icon } from "@/components/ui/Icon";
 import { Price } from "@/components/ui/Price";
 
@@ -43,6 +45,7 @@ export function PlannerForm({
   titleId: string;
   onDone?: () => void;
 }) {
+  const { t } = useT();
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<PlannerDraft>(emptyDraft);
   const [errors, setErrors] = useState<Errors>({});
@@ -132,7 +135,7 @@ export function PlannerForm({
     );
   }
 
-  const err = (k: string) => errors[k];
+  const err = (k: string) => (errors[k] ? t(errors[k]) : undefined);
   const field = (k: string) => ({
     "aria-invalid": Boolean(err(k)),
     "aria-describedby": err(k) ? `${uid}-${k}-err` : undefined,
@@ -150,12 +153,12 @@ export function PlannerForm({
       >
         {
           [
-            <>When would you like to <em className="font-light italic">travel</em>?</>,
-            <>Where are you <em className="font-light italic">drawn</em> to?</>,
-            <>What&apos;s your <em className="font-light italic">budget</em>?</>,
-            <>Who&apos;s <em className="font-light italic">travelling</em>?</>,
-            <>How should we <em className="font-light italic">reach</em> you?</>,
-          ][step]
+            "When would you like to *travel*?",
+            "Where are you *drawn* to?",
+            "What's your *budget*?",
+            "Who's *travelling*?",
+            "How should we *reach* you?",
+          ].map((h) => emphasize(t(h)))[step]
         }
       </h2>
 
@@ -163,7 +166,7 @@ export function PlannerForm({
         {step === 0 && (
           <>
             <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Preferred arrival date" htmlFor={`${uid}-arrival`} error={err("arrival")} errId={`${uid}-arrival-err`}>
+              <Field label={t("Preferred arrival date")} htmlFor={`${uid}-arrival`} error={err("arrival")} errId={`${uid}-arrival-err`}>
                 <input
                   id={`${uid}-arrival`}
                   type="date"
@@ -176,9 +179,9 @@ export function PlannerForm({
                 />
               </Field>
               <Field
-                label="Length of stay"
+                label={t("Length of stay")}
                 htmlFor={`${uid}-nights`}
-                hint="Most of our trips run 8–16 nights."
+                hint={t("Most of our trips run 8–16 nights.")}
                 error={err("nights")}
                 errId={`${uid}-nights-err`}
               >
@@ -191,14 +194,14 @@ export function PlannerForm({
                 >
                   {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => (
                     <option key={n} value={n}>
-                      {n} {n === 1 ? "night" : "nights"}
+                      {n === 1 ? t("1 night") : t("{n} nights", { n })}
                     </option>
                   ))}
                 </select>
               </Field>
             </div>
 
-            <ChoiceGroup legend="My dates are">
+            <ChoiceGroup legend={t("My dates are")}>
               {(["exact", "approximate"] as const).map((v) => (
                 <Pill
                   key={v}
@@ -207,12 +210,12 @@ export function PlannerForm({
                   checked={draft.when.dateType === v}
                   onChange={() => update("when", { dateType: v })}
                 >
-                  {v === "exact" ? "Exact" : "Approximate"}
+                  {v === "exact" ? t("Exact") : t("Approximate")}
                 </Pill>
               ))}
             </ChoiceGroup>
 
-            <ChoiceGroup legend="Have you been to Indonesia before?" error={err("travellerType")} errId={`${uid}-travellerType-err`}>
+            <ChoiceGroup legend={t("Have you been to Indonesia before?")} error={err("travellerType")} errId={`${uid}-travellerType-err`}>
               <div className="grid gap-3 sm:grid-cols-2">
                 {(
                   [
@@ -229,8 +232,8 @@ export function PlannerForm({
                     invalid={Boolean(err("travellerType"))}
                     describedBy={err("travellerType") ? `${uid}-travellerType-err` : undefined}
                   >
-                    <span className="block font-display text-lg">{label}</span>
-                    <span className="mt-1 block text-sm text-ink-soft">{text}</span>
+                    <span className="block font-display text-lg">{t(label)}</span>
+                    <span className="mt-1 block text-sm text-ink-soft">{t(text)}</span>
                   </OptionCard>
                 ))}
               </div>
@@ -241,7 +244,7 @@ export function PlannerForm({
         {step === 1 && (
           <>
             <ChoiceGroup
-              legend="Choose one or more. Selecting several means a combined itinerary."
+              legend={t("Choose one or more. Selecting several means a combined itinerary.")}
               error={err("regions")}
               errId={`${uid}-regions-err`}
             >
@@ -292,8 +295,8 @@ export function PlannerForm({
                         </span>
                       </span>
                       <span className="block p-3">
-                        <span className="block font-display text-[0.9375rem] leading-tight">{r.label}</span>
-                        <span className="mt-1 block text-xs leading-snug text-ink-soft">{r.text}</span>
+                        <span className="block font-display text-[0.9375rem] leading-tight">{t(r.label)}</span>
+                        <span className="mt-1 block text-xs leading-snug text-ink-soft">{t(r.text)}</span>
                       </span>
                     </label>
                   );
@@ -301,9 +304,9 @@ export function PlannerForm({
               </div>
             </ChoiceGroup>
             <Field
-              label="Specific hotels, boats or activities in mind?"
+              label={t("Specific hotels, boats or activities in mind?")}
               htmlFor={`${uid}-specifics`}
-              hint="Optional. e.g. a particular villa, a dive course, a wedding anniversary dinner."
+              hint={t("Optional. e.g. a particular villa, a dive course, a wedding anniversary dinner.")}
             >
               <textarea
                 id={`${uid}-specifics`}
@@ -318,7 +321,7 @@ export function PlannerForm({
 
         {step === 2 && (
           <ChoiceGroup
-            legend="Approximate cost per person per day, including stays, private guiding, activities and in-country transfers."
+            legend={t("Approximate cost per person per day, including stays, private guiding, activities and in-country transfers.")}
             error={err("budget")}
             errId={`${uid}-budget-err`}
           >
@@ -333,14 +336,14 @@ export function PlannerForm({
                   invalid={Boolean(err("budget"))}
                   describedBy={err("budget") ? `${uid}-budget-err` : undefined}
                 >
-                  <span className="block font-display text-lg">{b.label}</span>
+                  <span className="block font-display text-lg">{t(b.label)}</span>
                   {b.perDayUSD && (
                     <span className="mt-1 block text-sm font-medium">
-                      approx. <Price usd={b.perDayUSD} />
-                      {b.plus ? "+" : ""} per person per day
+                      {t("approx.")}{" "}<Price usd={b.perDayUSD} />
+                      {b.plus ? "+" : ""} {t("per person per day")}
                     </span>
                   )}
-                  <span className="mt-2 block text-sm text-ink-soft">{b.text}</span>
+                  <span className="mt-2 block text-sm text-ink-soft">{t(b.text)}</span>
                 </OptionCard>
               ))}
             </div>
@@ -350,7 +353,7 @@ export function PlannerForm({
         {step === 3 && (
           <>
             <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Adults" htmlFor={`${uid}-adults`} error={err("adults")} errId={`${uid}-adults-err`}>
+              <Field label={t("Adults")} htmlFor={`${uid}-adults`} error={err("adults")} errId={`${uid}-adults-err`}>
                 <select
                   id={`${uid}-adults`}
                   value={draft.who.adults}
@@ -365,7 +368,7 @@ export function PlannerForm({
                   ))}
                 </select>
               </Field>
-              <Field label="Children (under 18)" htmlFor={`${uid}-children`}>
+              <Field label={t("Children (under 18)")} htmlFor={`${uid}-children`}>
                 <select
                   id={`${uid}-children`}
                   value={draft.who.children}
@@ -388,15 +391,15 @@ export function PlannerForm({
 
             {draft.who.children > 0 && (
               <fieldset>
-                <legend className="text-sm font-medium">Ages of the children</legend>
+                <legend className="text-sm font-medium">{t("Ages of the children")}</legend>
                 <p className="mt-1 text-sm text-ink-soft">
-                  Some boats and dive operators have minimum ages, so this helps us plan.
+                  {t("Some boats and dive operators have minimum ages, so this helps us plan.")}
                 </p>
                 <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {draft.who.childAges.map((age, i) => (
                     <div key={i}>
                       <label htmlFor={`${uid}-age-${i}`} className="sr-only">
-                        Age of child {i + 1}
+                        {t("Age of child {n}", { n: i + 1 })}
                       </label>
                       <select
                         id={`${uid}-age-${i}`}
@@ -409,10 +412,10 @@ export function PlannerForm({
                         className={inputClass}
                         {...field(`childAge${i}`)}
                       >
-                        <option value="">Child {i + 1}</option>
+                        <option value="">{t("Child {n}", { n: i + 1 })}</option>
                         {Array.from({ length: 18 }, (_, a) => a).map((a) => (
                           <option key={a} value={a}>
-                            {a === 0 ? "Under 1" : `${a} yrs`}
+                            {a === 0 ? t("Under 1") : t("{n} yrs", { n: a })}
                           </option>
                         ))}
                       </select>
@@ -427,7 +430,7 @@ export function PlannerForm({
               </fieldset>
             )}
 
-            <ChoiceGroup legend="Would you like help with any of these?">
+            <ChoiceGroup legend={t("Would you like help with any of these?")}>
               <div className="space-y-3">
                 {addOnOptions.map((a) => {
                   const checked = draft.who.addOns.includes(a.id);
@@ -442,8 +445,8 @@ export function PlannerForm({
                         })
                       }
                     >
-                      <span className="block font-medium">{a.label}</span>
-                      <span className="mt-1 block text-sm text-ink-soft">{a.text}</span>
+                      <span className="block font-medium">{t(a.label)}</span>
+                      <span className="mt-1 block text-sm text-ink-soft">{t(a.text)}</span>
                     </OptionCard>
                   );
                 })}
@@ -455,7 +458,7 @@ export function PlannerForm({
         {step === 4 && (
           <>
             <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Full name" htmlFor={`${uid}-name`} error={err("name")} errId={`${uid}-name-err`}>
+              <Field label={t("Full name")} htmlFor={`${uid}-name`} error={err("name")} errId={`${uid}-name-err`}>
                 <input
                   id={`${uid}-name`}
                   type="text"
@@ -467,9 +470,9 @@ export function PlannerForm({
                 />
               </Field>
               <Field
-                label="Email address"
+                label={t("Email address")}
                 htmlFor={`${uid}-email`}
-                hint="We'll send your proposal here."
+                hint={t("We'll send your proposal here.")}
                 error={err("email")}
                 errId={`${uid}-email-err`}
               >
@@ -486,15 +489,15 @@ export function PlannerForm({
             </div>
 
             <Field
-              label="Phone number"
+              label={t("Phone number")}
               htmlFor={`${uid}-phone`}
-              hint="Used only to coordinate your trip. No sales calls."
+              hint={t("Used only to coordinate your trip. No sales calls.")}
               error={err("phone")}
               errId={`${uid}-phone-err`}
             >
               <div className="flex gap-2">
                 <label htmlFor={`${uid}-cc`} className="sr-only">
-                  Country code
+                  {t("Country code")}
                 </label>
                 <select
                   id={`${uid}-cc`}
@@ -504,7 +507,7 @@ export function PlannerForm({
                 >
                   {countryCodes.map((c) => (
                     <option key={c.code} value={c.code}>
-                      {c.label}
+                      {t(c.label)}
                     </option>
                   ))}
                 </select>
@@ -521,7 +524,7 @@ export function PlannerForm({
               </div>
             </Field>
 
-            <ChoiceGroup legend="Preferred ways to reach you" error={err("methods")} errId={`${uid}-methods-err`}>
+            <ChoiceGroup legend={t("Preferred ways to reach you")} error={err("methods")} errId={`${uid}-methods-err`}>
               {contactMethods.map((m) => {
                 const checked = draft.contact.methods.includes(m.id);
                 return (
@@ -537,13 +540,13 @@ export function PlannerForm({
                       })
                     }
                   >
-                    {m.label}
+                    {t(m.label)}
                   </Pill>
                 );
               })}
             </ChoiceGroup>
 
-            <Field label="Anything else we should know?" htmlFor={`${uid}-notes`} hint="Optional. Celebrations, dietary needs, mobility, pace.">
+            <Field label={t("Anything else we should know?")} htmlFor={`${uid}-notes`} hint={t("Optional. Celebrations, dietary needs, mobility, pace.")}>
               <textarea
                 id={`${uid}-notes`}
                 rows={4}
@@ -558,7 +561,7 @@ export function PlannerForm({
 
       {status === "error" && (
         <p role="alert" className="mt-6 rounded-sm bg-clay-500/10 p-4 text-sm text-clay-600">
-          We couldn&apos;t send your request. Please try again, or email us at{" "}
+          {t("We couldn't send your request. Please try again, or email us at")}{" "}
           <a href={`mailto:${site.email}`} className="underline">
             {site.email}
           </a>
@@ -569,13 +572,13 @@ export function PlannerForm({
       <div className="mt-10 flex items-center justify-between gap-4 border-t border-sand-300 pt-6">
         {step > 0 ? (
           <Button type="button" variant="ghost" onClick={() => goTo(step - 1)}>
-            Back
+            {t("Back")}
           </Button>
         ) : (
           <span />
         )}
         <Button type="submit" disabled={status === "sending"} arrow>
-          {step < plannerSteps.length - 1 ? "Next" : status === "sending" ? "Sending…" : "Send to my specialist"}
+          {step < plannerSteps.length - 1 ? t("Next") : status === "sending" ? t("Sending…") : t("Send to my specialist")}
         </Button>
       </div>
     </form>
@@ -588,21 +591,22 @@ const inputClass =
   "h-12 w-full rounded-sm border border-sand-400 bg-paper px-3.5 text-[0.8125rem] aria-[invalid=true]:border-clay-500";
 
 function Progress({ step }: { step: number }) {
+  const { t } = useT();
   return (
     <div>
       <p className="text-sm text-ink-soft">
         <span className="font-medium text-ink">
-          Step {step + 1} of {plannerSteps.length}
+          {t("Step {n} of {total}", { n: step + 1, total: plannerSteps.length })}
         </span>{" "}
-        · {plannerSteps[step]}
+        · {t(plannerSteps[step])}
       </p>
-      <ol className="mt-3 grid grid-cols-5 gap-1.5" aria-label="Planner progress">
+      <ol className="mt-3 grid grid-cols-5 gap-1.5" aria-label={t("Planner progress")}>
         {plannerSteps.map((s, i) => (
           <li key={s} aria-current={i === step ? "step" : undefined}>
             <span className={`block h-1 rounded-full ${i <= step ? "bg-jungle-900" : "bg-sand-300"}`} />
             <span className={`mt-2 hidden text-xs sm:block ${i === step ? "text-ink" : "text-ink-soft"}`}>
-              {s}
-              {i < step && <span className="sr-only"> (completed)</span>}
+              {t(s)}
+              {i < step && <span className="sr-only"> ({t("completed")})</span>}
             </span>
           </li>
         ))}
@@ -742,6 +746,7 @@ function Confirmation({
   reference: string;
   onDone: () => void;
 }) {
+  const { t } = useT();
   const ref = useRef<HTMLHeadingElement>(null);
   useEffect(() => ref.current?.focus(), []);
   return (
@@ -750,21 +755,20 @@ function Confirmation({
         <Icon name="check" size={26} />
       </span>
       <h2 ref={ref} id={titleId} tabIndex={-1} className="mt-6 font-display text-display-lg outline-none">
-        Terima kasih, <em className="font-light italic">{name || "traveller"}</em>.
+        Terima kasih, <em className="font-light italic">{name || t("traveller")}</em>.
       </h2>
       <p className="mt-4 max-w-lg text-lg text-ink-soft">
-        Your trip request is with our team. A specialist will be in touch at {email}, usually within the hour during
-        Bali office hours (8am–8pm WITA).
+        {t("Your trip request is with our team. A specialist will be in touch at {email}, usually within the hour during office hours (8am–8pm WITA).", { email })}
       </p>
       <dl className="mt-6 inline-grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 rounded-sm bg-sand-100 px-5 py-4 text-sm">
-        <dt className="text-ink-soft">Reference</dt>
+        <dt className="text-ink-soft">{t("Reference")}</dt>
         <dd className="font-medium tabular-nums">{reference}</dd>
-        <dt className="text-ink-soft">What next</dt>
-        <dd>Ideas and a draft route, then a call if you&apos;d like one.</dd>
+        <dt className="text-ink-soft">{t("What next")}</dt>
+        <dd>{t("Ideas and a draft route, then a call if you'd like one.")}</dd>
       </dl>
       <div className="mt-8">
         <Button type="button" variant="secondary" onClick={onDone}>
-          Done
+          {t("Done")}
         </Button>
       </div>
     </div>

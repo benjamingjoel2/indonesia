@@ -1,16 +1,18 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import { currencies } from "@/data/currencies";
 import type { CurrencyCode } from "@/data/types";
 import { useCurrency } from "@/lib/currency";
 import { Icon } from "@/components/ui/Icon";
 
 export function CurrencySwitcher({ id, className = "" }: { id: string; className?: string }) {
+  const { t } = useT();
   const { code, setCode } = useCurrency();
   return (
     <div className={`relative inline-flex items-center ${className}`}>
       <label htmlFor={id} className="sr-only">
-        Display prices in
+        {t("Display prices in")}
       </label>
       <select
         id={id}

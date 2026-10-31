@@ -5,10 +5,9 @@ import type { Destination, Img, MonthRating, SeasonRating } from "./types";
 const u = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1800&q=80`;
 
-const img = (id: string, alt: string, photographer?: string): Img =>
-  photographer
-    ? { src: u(id), alt, credit: `Photo: ${photographer} / Unsplash` }
-    : { src: u(id), alt };
+// The third argument (photographer) is kept for the photo log; credits are not shown on the site.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const img = (id: string, alt: string, photographer?: string): Img => ({ src: u(id), alt });
 
 /** Twelve ratings, January to December, with optional notes keyed by month. */
 const months = (

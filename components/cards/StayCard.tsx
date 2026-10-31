@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import type { Stay } from "@/data/types";
 import { destinationName, stayTypeLabel } from "@/lib/data";
 import { Price } from "@/components/ui/Price";
+import { t } from "@/lib/i18n/server";
 
 export function StayCard({ s, headingLevel = "h3" }: { s: Stay; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
@@ -17,7 +18,7 @@ export function StayCard({ s, headingLevel = "h3" }: { s: Stay; headingLevel?: "
           className="object-cover transition-transform duration-700 ease-[var(--ease-calm)] group-hover:scale-[1.04]"
         />
         <span className="absolute left-3 top-3 rounded-sm bg-paper/95 px-2.5 py-1 text-xs font-medium">
-          {stayTypeLabel[s.type]}
+          {t(stayTypeLabel[s.type])}
         </span>
       </div>
       <p className="eyebrow mt-5 text-lagoon-500">
@@ -28,7 +29,7 @@ export function StayCard({ s, headingLevel = "h3" }: { s: Stay; headingLevel?: "
       </H>
       <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-soft">{s.summary}</p>
       <p className="mt-3 text-sm">
-        From <Price usd={s.priceFromUSD} className="font-medium" /> per person · night
+        {t("From")}{" "}<Price usd={s.priceFromUSD} className="font-medium" />{" "}{t("per person · night")}
       </p>
     </Link>
   );

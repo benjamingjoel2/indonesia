@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import type { BlogPostMeta } from "@/data/types";
+import { getLocale } from "@/lib/i18n/server";
 
 const DIR = path.join(process.cwd(), "content", "blog");
 
@@ -16,8 +17,11 @@ interface Frontmatter {
   readingMinutes: number;
 }
 
+/** Articles live in content/blog/<slug>.mdx (English) and content/blog/<locale>/<slug>.mdx. */
 function read(slug: string): { meta: BlogPostMeta; body: string } | null {
-  const file = path.join(DIR, `${slug}.mdx`);
+  const locale = getLocale();
+  const localized = path.join(DIR, locale, `${slug}.mdx`);
+  const file = locale !== "en" && fs.existsSync(localized) ? localized : path.join(DIR, `${slug}.mdx`);
   if (!fs.existsSync(file)) return null;
   const { data, content } = matter(fs.readFileSync(file, "utf8"));
   const fm = data as Frontmatter;

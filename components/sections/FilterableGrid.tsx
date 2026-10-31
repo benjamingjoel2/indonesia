@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/components/i18n/I18nProvider";
 import { useMemo, useState, type ReactNode } from "react";
 import { Icon } from "@/components/ui/Icon";
 
@@ -45,6 +46,7 @@ export function FilterableGrid({
   pageSize?: number;
   empty?: ReactNode;
 }) {
+  const { t } = useT();
   const [selected, setSelected] = useState<Record<string, string[]>>({});
   const [sort, setSort] = useState(sorts[0]?.id);
   const [shown, setShown] = useState(pageSize);
@@ -123,16 +125,16 @@ export function FilterableGrid({
             <span className="font-medium text-ink">
               {results.length} {results.length === 1 ? noun[0] : noun[1]}
             </span>
-            {summary ? ` · Your search: ${summary}` : ""}
+            {summary ? ` · ${t("Your search:")} ${summary}` : ""}
           </p>
           <div className="flex items-center gap-3">
             {active > 0 && (
               <button type="button" onClick={clear} className="text-sm underline underline-offset-4">
-                Clear filters
+                {t("Clear filters")}
               </button>
             )}
             <label className="flex items-center gap-2 text-sm">
-              <span className="text-ink-soft">Sort</span>
+              <span className="text-ink-soft">{t("Sort")}</span>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
@@ -152,12 +154,12 @@ export function FilterableGrid({
       {results.length === 0 ? (
         <div className="py-16 text-center">
           <p className="font-display text-display-sm">
-            No {noun[1]} match <em className="font-light italic">all</em> of those filters.
+            {t("Nothing matches all of those filters.")}
           </p>
-          <p className="mt-2 text-ink-soft">Try removing one, or ask us to design something around them.</p>
+          <p className="mt-2 text-ink-soft">{t("Try removing one, or ask us to design something around them.")}</p>
           <div className="mt-6 flex justify-center gap-3">
             <button type="button" onClick={clear} className="text-sm underline underline-offset-4">
-              Clear filters
+              {t("Clear filters")}
             </button>
           </div>
           {empty}
@@ -176,7 +178,7 @@ export function FilterableGrid({
                 onClick={() => setShown((n) => n + pageSize)}
                 className="inline-flex min-h-11 items-center rounded-sm border border-jungle-900 px-6 text-[0.8125rem] font-medium hover:bg-jungle-900 hover:text-sand-50"
               >
-                Show more
+                {t("Show more")}
               </button>
             </div>
           )}
