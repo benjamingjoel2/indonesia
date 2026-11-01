@@ -174,6 +174,25 @@
   & strong {
     font-weight: 600;
   }
+  & table {
+    width: 100%;
+    min-width: 32rem;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+  }
+  & th,
+  & td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.6rem 1rem 0.6rem 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  & th {
+    font-weight: 600;
+  }
+  & td code {
+    white-space: nowrap;
+  }
   & blockquote {
     border-left: 2px solid var(--color-lagoon-500);
     padding-left: 1.25rem;
