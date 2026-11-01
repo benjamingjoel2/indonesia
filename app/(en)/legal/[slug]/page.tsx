@@ -36,6 +36,26 @@ export default async function LegalPage({ params }: Props) {
             {sec.body.map((b) => (
               <p key={b.slice(0, 40)}>{fill(b)}</p>
             ))}
+            {sec.table && (
+              <div className="overflow-x-auto" role="region" aria-label={sec.heading} tabIndex={0}>
+                <table>
+                  <thead>
+                    <tr>
+                      {sec.table.head.map((c) => (
+                        <th key={c} scope="col">{c}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sec.table.rows.map((r) => (
+                      <tr key={r[0]}>
+                        {r.map((c, i) => (i === 0 ? <td key={i}><code>{c}</code></td> : <td key={i}>{c}</td>))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </section>
         ))}
       </div>

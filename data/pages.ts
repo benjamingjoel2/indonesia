@@ -67,7 +67,7 @@ export const privateTravel = {
   ],
 };
 
-export type LegalSection = { heading: string; body: string[] };
+export type LegalSection = { heading: string; body: string[]; table?: { head: string[]; rows: string[][] } };
 export type LegalPage = { title: string; updated: string; intro: string; sections: LegalSection[] };
 
 /**
@@ -77,7 +77,7 @@ export type LegalPage = { title: string; updated: string; intro: string; section
 export const legalPages: Record<string, LegalPage> = {
   privacy: {
     title: "Privacy policy",
-    updated: "2026-10-31",
+    updated: "2026-11-01",
     intro: "How {brand} collects, uses and protects the personal information you share with us.",
     sections: [
       {
@@ -106,19 +106,22 @@ export const legalPages: Record<string, LegalPage> = {
         body: [
           "We share only what each supplier needs to deliver your trip: hotels and villas, boat operators, drivers, local guides, airlines and transfer companies. Some are in Indonesia and other countries outside your own; we share only what is necessary for your trip and expect them to protect it.",
           "We also use service providers who host this website and our email. We never sell your personal information, and we do not share it for advertising.",
+          "Enquiries, trip plans and brochure requests sent through this website are received by a server function run by our hosting provider, Vercel, and passed to our planning team. They are not added to any marketing list.",
+          "Where data protection law requires it, we rely on recognised safeguards for these transfers, such as the European Commission's standard contractual clauses (with the UK addendum), adequacy decisions, or the fact that the transfer is necessary to perform the contract you asked us to arrange. You can ask us for details.",
         ],
       },
       {
         heading: "How long we keep it",
         body: [
           "Enquiries that do not lead to a booking are deleted within two years of our last contact. Booking records are kept for as long as tax and accounting rules require, and then deleted.",
+          "Server logs: kept by our hosting provider for a short period (no more than 30 days) for security, then deleted.",
         ],
       },
       {
         heading: "Your rights",
         body: [
           "You can ask to see the information we hold about you, have it corrected or deleted, restrict or object to how we use it, or receive a copy in a portable format. Where we rely on your consent, you can withdraw it at any time.",
-          "Write to {email} and we will reply within one month. You can also complain to the data protection authority where you live.",
+          "To exercise any of these rights, email {email}; we will reply within one month. You also have the right to complain to a supervisory authority: in the UK the Information Commissioner's Office (ico.org.uk), in the European Union the data protection authority of the country where you live or work. We would appreciate the chance to put things right first.",
         ],
       },
       {
@@ -128,14 +131,26 @@ export const legalPages: Record<string, LegalPage> = {
         ],
       },
       {
+        heading: "Cookies",
+        body: ["This website sets no advertising or tracking cookies. What it stores on your device is explained in our Cookie Policy."],
+      },
+      {
+        heading: "Children",
+        body: ["This website and our services are meant for adults. We do not knowingly collect personal data directly from children under 16. Details of children travelling in a family group are given to us by a parent or guardian and are used only to plan and run the trip."],
+      },
+      {
         heading: "Changes to this policy",
         body: ["If we change this policy, we will update the date at the top of this page."],
+      },
+      {
+        heading: "Contact",
+        body: ["{brand}, {address}. Email: {email}."],
       },
     ],
   },
   "booking-terms": {
     title: "Booking terms",
-    updated: "2026-10-31",
+    updated: "2026-11-01",
     intro: "The terms that apply when you plan and book a tailor-made journey with {brand}.",
     sections: [
       {
@@ -161,8 +176,13 @@ export const legalPages: Record<string, LegalPage> = {
         heading: "Paying for your trip",
         body: [
           "The balance is due by the date stated on your confirmation. If it is not paid on time, we may treat the booking as cancelled by you and apply the cancellation charges below.",
+          "Unless your quote states otherwise, the deposit is 30% of the total price and the balance is due 60 days before departure; if you book within 60 days of departure, the full price is due when you book.",
           "Prices are quoted in US dollars. Amounts shown in other currencies on this website are indicative conversions only.",
         ],
+      },
+      {
+        heading: "What is included",
+        body: ["Your quote and booking confirmation list exactly what is included: typically accommodation, the meals stated, private transfers and transport, the guiding, activities and entrance or park fees listed, and our support before and during your trip. Unless your quote says otherwise, the price does not include international flights, visas, travel insurance, vaccinations and medical costs, tips, drinks and meals not listed, optional activities and personal expenses."],
       },
       {
         heading: "Changes you make",
@@ -173,7 +193,8 @@ export const legalPages: Record<string, LegalPage> = {
       {
         heading: "If you cancel",
         body: [
-          "You can cancel by writing to us. Cancellation charges increase as your departure date gets closer and reflect the costs we and our suppliers cannot recover; they are set out in your proposal and confirmation. Some elements, such as flights, boat charters and peak-season stays, may be non-refundable once booked, and we will tell you before you book.",
+          "You may cancel at any time by writing to us; the cancellation takes effect on the day we receive it. Because we commit money to suppliers on your behalf, unless your quote states otherwise the following charges apply, as a percentage of the total price: more than 60 days before departure, loss of the deposit (30%); 60 to 31 days, 50%; 30 to 15 days, 75%; 14 days or fewer, or if you do not travel, 100%.",
+          "Where a supplier's own terms are stricter, for example non-refundable flights, permits or peak-season stays, your quote will say so and those charges apply instead. Your travel insurance may cover cancellation charges.",
         ],
       },
       {
@@ -209,6 +230,10 @@ export const legalPages: Record<string, LegalPage> = {
         ],
       },
       {
+        heading: "Force majeure",
+        body: ["We are not liable for changes, delays or cancellations caused by unusual and unforeseeable circumstances beyond our control whose consequences could not have been avoided even with all due care, such as war or the threat of war, civil unrest, terrorism, natural disasters, extreme weather, epidemics, fire, the closure of airports or ports, industrial action, and government action or official advice against travel. If force majeure prevents your trip, we will refund everything we are able to recover from suppliers and help you rearrange."],
+      },
+      {
         heading: "Complaints",
         body: [
           "If something is not right during your trip, tell your specialist straight away so it can be put right on the spot. If you are still unhappy, write to {email} within 28 days of your return and we will reply in writing.",
@@ -217,14 +242,22 @@ export const legalPages: Record<string, LegalPage> = {
       {
         heading: "Law",
         body: [
-          "These terms are governed by the law that applies to your contract with us, and any dispute will be heard by the courts that have jurisdiction under that law. Your rights as a consumer in the country where you live are not affected.",
+          "These terms, and any dispute arising from them, are governed by the laws of Indonesia, and the courts of Indonesia have jurisdiction. If you live elsewhere, this does not take away any mandatory rights you have under the consumer law of your country of residence, and you may also bring proceedings there. We will always try to resolve a complaint by agreement first.",
         ],
+      },
+      {
+        heading: "Data protection",
+        body: ["We use your personal information only as described in our Privacy Policy."],
+      },
+      {
+        heading: "Contact",
+        body: ["{brand}, {address}. Email: {email}."],
       },
     ],
   },
   cookies: {
     title: "Cookie policy",
-    updated: "2026-10-31",
+    updated: "2026-11-01",
     intro: "What this website stores in your browser, and how to remove it.",
     sections: [
       {
@@ -236,17 +269,29 @@ export const legalPages: Record<string, LegalPage> = {
       {
         heading: "Local storage",
         body: [
-          "We use your browser's local storage for two things, and only after you use the feature concerned:",
-          "tie-currency: the currency you chose for prices. Kept until you clear it.",
-          "tie-planner-v1: your progress in the trip planner, so you can pick up where you left off. Removed when you send your request, or when you clear it.",
-          "These items stay on your device. They are never sent to us or anyone else.",
+          "We use your browser's local storage for two things, and only after you use the feature concerned. These items stay on your device and are never sent to us or anyone else.",
         ],
+        table: {
+          head: ["Name", "Purpose", "Duration", "Type"],
+          rows: [
+            ["tie-currency", "The currency you chose for prices.", "Until you clear your browser storage", "Local storage, set by this site"],
+            ["tie-planner-v1", "Your progress in the trip planner, so you can pick up where you left off.", "Until you send your request or clear your browser storage", "Local storage, set by this site"],
+          ],
+        },
       },
       {
         heading: "Your choice",
         body: [
           "Because these items are only created when you use the currency switcher or the trip planner, using those features is your consent. You can withdraw it at any time by clearing this site's data in your browser settings; the site keeps working, it simply forgets your choices.",
         ],
+      },
+      {
+        heading: "Third-party content",
+        body: ["Photographs are loaded directly from our image delivery provider’s servers, so your browser sends it your IP address and browser details when it requests an image; no cookies are set through these requests. Our typefaces are served from this website. The site does not embed maps, videos or social-media widgets."],
+      },
+      {
+        heading: "Changes to this policy",
+        body: ["If the website starts storing anything new, we will update this page, and the date at the top, before it does."],
       },
       {
         heading: "Questions",
