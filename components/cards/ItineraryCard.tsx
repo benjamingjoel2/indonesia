@@ -1,16 +1,18 @@
 import Image from "next/image";
 import Link from "@/components/i18n/Link";
 import type { Itinerary } from "@/data/types";
-import { destinationLabel } from "@/lib/data";
+import { destinationLabel, tierLabel } from "@/lib/data";
 import { Icon } from "@/components/ui/Icon";
 import { Price } from "@/components/ui/Price";
+import { buttonClass } from "@/components/ui/Button";
 import { t } from "@/lib/i18n/server";
 
+/** Cream trip card with a torn-edge photo, category pills and a pill button. */
 export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-sand-300 bg-paper">
-      <Link href={`/trips/${it.slug}`} className="relative block aspect-[3/2] overflow-hidden bg-sand-200" tabIndex={-1} aria-hidden="true">
+    <article className="group relative flex h-full flex-col rounded-sm border border-sand-300 bg-paper p-5 text-ink md:p-6">
+      <Link href={`/trips/${it.slug}`} className="edge-torn relative block aspect-[4/3] overflow-hidden bg-sand-200" tabIndex={-1} aria-hidden="true">
         <Image
           src={it.heroImage.src}
           alt=""
@@ -18,44 +20,50 @@ export function ItineraryCard({ it, headingLevel = "h3" }: { it: Itinerary; head
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-700 ease-[var(--ease-calm)] group-hover:scale-[1.04]"
         />
-        {it.badge && (
-          <span className="absolute left-3 top-3 rounded-sm bg-paper px-2.5 py-1 text-xs font-medium text-jungle-900">
-            {t(it.badge)}
-          </span>
-        )}
       </Link>
-      <div className="flex flex-1 flex-col p-6">
-        <p className="flex flex-wrap gap-2 text-xs">
-          <span className="rounded-sm bg-sand-100 px-2 py-1 font-medium">{t("{n} days", { n: it.durationDays })}</span>
-          <span className="rounded-sm bg-sand-100 px-2 py-1">{t("Indonesia")} · {destinationLabel(it.destinations.slice(0, 2))}</span>
-        </p>
-        <H className="mt-4 font-display text-display-sm">
-          <Link href={`/trips/${it.slug}`} className="after:absolute after:inset-0 hover:underline hover:decoration-1 hover:underline-offset-4 focus-visible:outline-none">
-            {it.title}
-          </Link>
-        </H>
-        <p className="mt-2 text-sm text-ink-soft">{it.inclusionLine}</p>
-        <ul className="mt-4 space-y-1.5 text-[0.8125rem]">
-          {it.highlights.slice(0, 4).map((h) => (
-            <li key={h} className="flex gap-2">
-              <Icon name="check" size={16} className="mt-1 shrink-0 text-lagoon-500" />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto pt-6">
-          <div className="border-t border-sand-300 pt-4">
-            <p className="text-sm text-ink-soft">
-              {t("From")}{" "}<Price usd={it.priceFromUSD} className="font-display text-2xl text-ink" />{" "}{t("per person")}
-            </p>
-            <p className="mt-1 text-xs text-ink-soft">
-              {t("From ≈")}{" "}<Price usd={it.priceFromUSD * 2} />{" "}{t("for two · international flights excluded")}
-            </p>
-            <p className="link-arrow mt-4 text-[0.8125rem]">
-              {t("View itinerary")}{" "}<Icon name="arrow" size={16} />
-            </p>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        <span className="pill border-lagoon-500 text-lagoon-500">{t("{n} days", { n: it.durationDays })}</span>
+        <span className="pill border-clay-500 text-clay-500">{destinationLabel(it.destinations.slice(0, 2))}</span>
+        {it.badge && <span className="pill border-ink-soft text-ink-soft">{t(it.badge)}</span>}
+      </div>
+
+      <H className="mt-4 font-display text-display-sm font-medium">
+        <Link href={`/trips/${it.slug}`} className="after:absolute after:inset-0 hover:underline hover:decoration-1 hover:underline-offset-4 focus-visible:outline-none">
+          {it.title}
+        </Link>
+      </H>
+      <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{it.summary}</p>
+
+      <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
+        <div className="flex gap-2">
+          <Icon name="clock" size={18} className="mt-0.5 shrink-0 text-ink-soft" />
+          <div>
+            <dt className="font-semibold">{t("Duration")}</dt>
+            <dd className="text-ink-soft">{t("{n} days · {m} nights", { n: it.durationDays, m: it.nights })}</dd>
           </div>
         </div>
+        <div className="flex gap-2">
+          <Icon name="tag" size={18} className="mt-0.5 shrink-0 text-ink-soft" />
+          <div>
+            <dt className="font-semibold">{t("Style")}</dt>
+            <dd className="text-ink-soft">{t(tierLabel[it.budgetTier])}</dd>
+          </div>
+        </div>
+      </dl>
+      <p className="mt-3 text-sm text-ink-soft">{it.inclusionLine}</p>
+
+      <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-6">
+        <div>
+          <p className="text-sm text-ink-soft">{t("From")}</p>
+          <p className="leading-none">
+            <Price usd={it.priceFromUSD} className="text-3xl font-bold" />{" "}
+            <span className="text-sm text-ink-soft">/ {t("per person")}</span>
+          </p>
+        </div>
+        <span className={buttonClass("primary", "!min-h-11 !px-5 text-sm")}>
+          {t("View itinerary")} <Icon name="arrowUpRight" size={15} strokeWidth={2} />
+        </span>
       </div>
     </article>
   );

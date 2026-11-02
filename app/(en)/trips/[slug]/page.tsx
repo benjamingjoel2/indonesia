@@ -84,10 +84,10 @@ export default async function TripPage({ params }: Props) {
           { label: it.title, href: `/trips/${it.slug}` },
         ]}
       >
-        <a href="#enquire" className={buttonClass("light")}>
+        <a href="#enquire" className={buttonClass("primary")}>
           {t("Enquire now")}
         </a>
-        <a href="#day-by-day" className={buttonClass("outline-light")}>
+        <a href="#day-by-day" className={buttonClass("secondary")}>
           {t("Day by day")}
         </a>
       </PageHero>
@@ -117,7 +117,7 @@ export default async function TripPage({ params }: Props) {
         <div className="min-w-0">
           {/* Overview */}
           <section id="overview" aria-labelledby="ov-title">
-            <h2 id="ov-title" className="eyebrow text-lagoon-500">{t("Overview")}</h2>
+            <h2 id="ov-title" className="eyebrow text-clay-500">{t("Overview")}</h2>
             <p className="mt-4 font-display text-display-sm leading-snug">{it.summary}</p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {it.highlights.map((h) => (
@@ -144,7 +144,7 @@ export default async function TripPage({ params }: Props) {
                   <li key={dayLabel(d)} className="relative grid gap-4 border-l border-sand-300 pb-12 pl-8 last:pb-0 md:grid-cols-[1fr_14rem] md:gap-8">
                     <span className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full bg-jungle-900" aria-hidden="true" />
                     <div>
-                      <p className="eyebrow text-lagoon-500">{dayLabel(d)}</p>
+                      <p className="eyebrow text-clay-500">{dayLabel(d)}</p>
                       <h3 className="mt-2 font-display text-display-sm">{d.title}</h3>
                       <p className="mt-3 leading-relaxed text-ink-soft">{d.body}</p>
                       {d.makeItYours && (

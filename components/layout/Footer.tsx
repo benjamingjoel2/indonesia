@@ -1,27 +1,41 @@
+import Image from "next/image";
 import Link from "@/components/i18n/Link";
 import { addressLines, footerColumns, legalLinks, site } from "@/data/site";
+import { home } from "@/data/home";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
 import { t, tx } from "@/lib/i18n/server";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const band = home.hero.image;
   return (
-    <footer className="bg-jungle-900 text-sand-100">
+    <footer className="bg-paper text-ink">
+      {/* Brand band: the name in giant serif over a torn-edge photo, as on the reference. */}
+      <div aria-hidden="true" className="container-edit relative isolate overflow-hidden pt-16 md:pt-24">
+        <p className="relative z-10 font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-none">{site.name}</p>
+        <div className="edge-torn-y relative -z-10 -mt-6 h-64 md:-mt-14 md:h-[28rem]">
+          <Image src={band.src} alt="" fill sizes="100vw" className="object-cover" loading="lazy" />
+        </div>
+        <p className="relative z-10 -mt-8 text-right font-display text-[clamp(2rem,6vw,5rem)] font-medium leading-none md:-mt-16">
+          {t("Tailor-made Indonesia")}
+        </p>
+      </div>
+
       <div className="container-edit py-16 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_2.8fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_2.7fr]">
           {/* Brand block */}
           <div className="max-w-sm">
-            <Logo tone="light" />
-            <p className="mt-5 text-[0.8125rem] leading-relaxed text-sand-200">{t(site.blurb)}</p>
-            <ul className="mt-6 space-y-2 text-[0.8125rem]">
+            <Logo />
+            <p className="mt-5 text-[0.9375rem] leading-relaxed text-ink-soft">{t(site.blurb)}</p>
+            <ul className="mt-6 space-y-2 text-[0.9375rem]">
               <li>
-                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2.5 hover:text-white">
+                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2.5 font-semibold hover:text-lagoon-500">
                   <Icon name="mail" size={16} /> {site.email}
                 </a>
               </li>
               <li>
-                <address className="inline-flex gap-2.5 not-italic text-sand-200">
+                <address className="inline-flex gap-2.5 not-italic text-ink-soft">
                   <Icon name="pin" size={16} className="mt-0.5 shrink-0" />
                   <span>{addressLines.join(", ")}</span>
                 </address>
@@ -34,10 +48,10 @@ export function Footer() {
             {tx(footerColumns).map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <h2 className="eyebrow mb-4 text-sand-400">{col.title}</h2>
-                <ul className="space-y-2.5 text-[0.8125rem]">
+                <ul className="space-y-2.5 text-[0.9375rem] font-semibold">
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="text-sand-100 hover:text-white hover:underline hover:underline-offset-4">
+                      <Link href={l.href} className="hover:text-lagoon-500">
                         {l.label}
                       </Link>
                     </li>
@@ -49,14 +63,14 @@ export function Footer() {
         </div>
 
         {/* Legal */}
-        <div className="mt-14 border-t border-jungle-700 pt-10 flex flex-col gap-4 text-sm text-sand-300 md:flex-row md:items-center md:justify-between">
-          <p>
+        <div className="mt-14 flex flex-col gap-4 border-t border-sand-300 pt-8 text-sm text-ink-soft md:flex-row md:items-center md:justify-between">
+          <p className="font-semibold">
             © {year} {site.name}. {t("All rights reserved.")}
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 font-semibold">
             {tx(legalLinks).map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-white hover:underline hover:underline-offset-4">
+                <Link href={l.href} className="hover:text-lagoon-500">
                   {l.label}
                 </Link>
               </li>

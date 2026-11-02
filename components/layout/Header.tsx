@@ -117,7 +117,7 @@ export function Header() {
                     href={item.href}
                     onMouseEnter={hoverClose}
                     aria-current={isActive(item.href) ? "page" : undefined}
-                    className="inline-flex h-10 items-center rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100 aria-[current=page]:underline aria-[current=page]:underline-offset-8"
+                    className="inline-flex h-10 items-center rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100 aria-[current=page]:text-lagoon-500"
                   >
                     {item.label}
                   </Link>
@@ -132,7 +132,7 @@ export function Header() {
                     onClick={() =>
                       setOpenMenu((m) => (m === item.kind ? null : (item.kind as MenuKind)))
                     }
-                    className="inline-flex h-10 items-center gap-1 rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100 aria-expanded:bg-sand-100"
+                    className="inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100 aria-expanded:bg-sand-100"
                   >
                     {item.label}
                     <Icon
@@ -148,7 +148,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onMouseEnter={hoverClose}
-                className="inline-flex h-10 items-center rounded-sm px-3 text-[0.8125rem] hover:bg-sand-100"
+                className="inline-flex h-10 items-center rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100"
               >
                 {t("Contact")}
               </Link>
@@ -160,7 +160,7 @@ export function Header() {
           <button
             type="button"
             onClick={openSearch}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-sand-100"
             aria-label={t("Search the site")}
             aria-keyshortcuts="/ Control+K Meta+K"
           >
@@ -171,14 +171,14 @@ export function Header() {
             <CurrencySwitcher id="currency-desktop" />
           </div>
           <div className="hidden sm:block">
-            <Button onClick={openPlanner} arrow>
+            <Button onClick={openPlanner} className="!min-h-11 !px-5 text-sm" arrow>
               {t("Start planning")}
             </Button>
           </div>
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm hover:bg-sand-100 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-sand-100 lg:hidden"
             aria-label={t("Open menu")}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -210,11 +210,11 @@ export function Header() {
       <MegaPanel kind="experiences" open={openMenu === "experiences"} onEnter={() => hoverOpen("experiences")}>
         <div className="grid gap-10 lg:grid-cols-[2fr_0.9fr]">
           <div>
-            <p className="eyebrow mb-4 text-ink-soft">{t("Travel by the kind of trip")}</p>
+            <p className="eyebrow mb-4 text-clay-500">{t("Travel by the kind of trip")}</p>
             <ul className="grid grid-cols-2 gap-x-10 gap-y-1 xl:grid-cols-3">
               {tx(experiencesMenu).map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="block py-1.5 font-display text-lg hover:text-lagoon-500">
+                  <Link href={l.href} className="block py-1.5 font-display text-xl font-medium hover:text-lagoon-500">
                     {l.label}
                   </Link>
                 </li>
@@ -240,8 +240,8 @@ export function Header() {
           {tx(aboutMenu).map((group) => (
             <MenuColumn key={group.title} group={group} />
           ))}
-          <div className="rounded-sm bg-sand-100 p-6">
-            <p className="eyebrow mb-3 text-ink-soft">{t("Talk to a specialist")}</p>
+          <div className="rounded-md bg-sand-100 p-6">
+            <p className="eyebrow mb-3 text-clay-500">{t("Talk to a specialist")}</p>
             <a href={`mailto:${site.email}`} className="flex items-center gap-2 py-1 hover:text-lagoon-500">
               <Icon name="mail" size={16} /> {site.email}
             </a>
@@ -273,7 +273,7 @@ function MegaPanel({
       aria-labelledby={`menu-trigger-${kind}`}
       hidden={!open}
       onMouseEnter={onEnter}
-      className="absolute inset-x-0 top-full hidden border-b border-sand-300 bg-paper shadow-[0_24px_40px_-24px_rgba(15,46,42,0.25)] lg:block [&[hidden]]:hidden"
+      className="absolute inset-x-0 top-full hidden border-b border-sand-300 bg-paper shadow-[0_24px_40px_-24px_rgba(36,56,47,0.25)] lg:block [&[hidden]]:hidden"
     >
       <div className="container-edit animate-fade-in py-10">{children}</div>
     </div>
@@ -283,11 +283,11 @@ function MegaPanel({
 function MenuColumn({ group }: { group: NavGroup }) {
   return (
     <div>
-      <p className="eyebrow mb-4 text-ink-soft">{group.title}</p>
+      <p className="eyebrow mb-4 text-clay-500">{group.title}</p>
       <ul className="space-y-1">
         {group.links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="block py-1.5 font-display text-lg hover:text-lagoon-500">
+            <Link href={l.href} className="block py-1.5 font-display text-xl font-medium hover:text-lagoon-500">
               {l.label}
             </Link>
           </li>
@@ -312,17 +312,17 @@ function MenuFeature({
 }) {
   const { t } = useT();
   return (
-    <div className="flex flex-col justify-between rounded-sm bg-jungle-900 p-6 text-sand-50">
+    <div className="flex flex-col justify-between rounded-md bg-jungle-900 p-6 text-paper">
       <div>
-        <p className="font-display text-2xl leading-tight">{emphasize(title)}</p>
+        <p className="font-display text-2xl font-medium leading-tight">{emphasize(title)}</p>
         <p className="mt-3 text-sm text-sand-200">{text}</p>
       </div>
       {onPlan ? (
-        <Button variant="light" onClick={onPlan} className="mt-6 self-start" arrow>
+        <Button onClick={onPlan} className="mt-6 self-start" arrow>
           {t("Start planning")}
         </Button>
       ) : href ? (
-        <ArrowLink href={href} className="mt-6 text-sm text-sand-50">
+        <ArrowLink href={href} className="mt-6 text-sm text-paper">
           {hrefLabel}
         </ArrowLink>
       ) : null}

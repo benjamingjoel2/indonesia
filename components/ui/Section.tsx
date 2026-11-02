@@ -18,7 +18,7 @@ export function Section({
   const toneClass = {
     paper: "bg-paper",
     sand: "bg-sand-100",
-    dark: "bg-jungle-900 text-sand-50",
+    dark: "bg-jungle-950 text-paper",
   }[tone];
   return (
     <section id={id} aria-labelledby={labelledBy} className={`${toneClass} py-20 md:py-28 ${className}`}>
@@ -27,7 +27,7 @@ export function Section({
   );
 }
 
-/** Heading block with optional intro and a trailing "All … →" link. */
+/** Heading block: terracotta eyebrow, serif title, intro to the right, optional "All … ↗" link. */
 export function SectionHeader({
   id,
   eyebrow,
@@ -35,6 +35,7 @@ export function SectionHeader({
   intro,
   link,
   as = "h2",
+  tone = "light",
 }: {
   id?: string;
   eyebrow?: string;
@@ -42,21 +43,25 @@ export function SectionHeader({
   intro?: string;
   link?: { href: string; label: string };
   as?: "h1" | "h2";
+  tone?: "light" | "dark";
 }) {
+  const soft = tone === "dark" ? "text-sand-200" : "text-ink-soft";
   return (
-    <div className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
-      <div className="max-w-2xl">
-        {eyebrow && <Eyebrow className="mb-4">{eyebrow}</Eyebrow>}
+    <div className="mb-10 grid gap-6 md:mb-14 md:grid-cols-[1.3fr_1fr] md:items-end">
+      <div>
+        {eyebrow && <Eyebrow className={`mb-3 ${tone === "dark" ? "text-sand-300" : ""}`}>{eyebrow}</Eyebrow>}
         <Heading as={as} id={id} size="xl">
           {heading}
         </Heading>
-        {intro && <p className="mt-4 text-lg leading-relaxed text-ink-soft">{intro}</p>}
       </div>
-      {link && (
-        <ArrowLink href={link.href} className="shrink-0 text-[0.8125rem]">
-          {link.label}
-        </ArrowLink>
-      )}
+      <div className="flex flex-col gap-4 md:items-start">
+        {intro && <p className={`max-w-md text-lg leading-relaxed ${soft}`}>{intro}</p>}
+        {link && (
+          <ArrowLink href={link.href} className="text-[0.9375rem]">
+            {link.label}
+          </ArrowLink>
+        )}
+      </div>
     </div>
   );
 }

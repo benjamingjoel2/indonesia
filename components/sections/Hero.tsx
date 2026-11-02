@@ -7,58 +7,55 @@ import { PlanButton } from "@/components/ui/PlanButton";
 import { Icon } from "@/components/ui/Icon";
 import { t, tx } from "@/lib/i18n/server";
 
+/**
+ * Cream hero: the headline sits on a paper panel with a torn right/bottom edge,
+ * and the photo rises up behind it with a torn top edge.
+ */
 export function Hero() {
   const { hero } = tx(homeEn);
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-jungle-950 text-sand-50">
-      {hero.videoSrc ? (
-        <video
-          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-70 motion-reduce:hidden"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={hero.image.src}
-          aria-hidden="true"
-        >
-          <source src={hero.videoSrc} type="video/mp4" />
-        </video>
-      ) : null}
-      <Image
-        src={hero.image.src}
-        alt={hero.image.alt}
-        fill
-        priority
-        quality={50}
-        sizes="100vw"
-        className={`-z-20 object-cover ${hero.videoSrc ? "motion-safe:hidden" : ""}`}
-      />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-jungle-950/85 via-jungle-950/55 to-jungle-950/10" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-jungle-950/70 to-transparent" />
-
-      <div className="container-edit flex min-h-[calc(100svh-6.75rem)] flex-col justify-end pb-10 pt-24 md:min-h-[44rem] md:pb-14">
-        <div className="max-w-3xl">
-          <p className="eyebrow text-sand-300">{hero.eyebrow}</p>
-          <Heading as="h1" id="hero-title" size="2xl" className="mt-5">
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-paper">
+      <div className="container-edit pt-6 md:pt-10">
+        <div className="edge-torn-br relative z-10 inline-block max-w-3xl bg-paper pb-10 pr-8 md:pb-14 md:pr-16">
+          <p className="eyebrow text-clay-500">{hero.eyebrow}</p>
+          <Heading as="h1" id="hero-title" size="2xl" className="mt-4 text-ink">
             {hero.heading}
           </Heading>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-sand-100 md:text-xl">{hero.intro}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <PlanButton variant="light" arrow>
-              {t("Start planning")}
-            </PlanButton>
-            <LinkButton href="/why-travel-with-us" variant="outline-light" arrow>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">{hero.intro}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <PlanButton arrow>{t("Start planning")}</PlanButton>
+            <LinkButton href="/why-travel-with-us" variant="secondary" arrow>
               {t("How we work")}
             </LinkButton>
           </div>
         </div>
+      </div>
 
-        <div className="mt-14 flex items-start gap-3 border-t border-sand-50/25 pt-5 text-sm text-sand-100 md:mt-20">
-          <span className="eyebrow mt-0.5 shrink-0 rounded-sm bg-sand-50/15 px-2 py-1 text-[0.6875rem] text-sand-50">
-            {t("Included")}
+      <div className="relative -z-10 -mt-20 h-[26rem] w-full md:-mt-36 md:h-[40rem] lg:h-[44rem]">
+        {hero.videoSrc ? (
+          <video
+            className="edge-torn-y absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={hero.image.src}
+            aria-hidden="true"
+          >
+            <source src={hero.videoSrc} type="video/mp4" />
+          </video>
+        ) : null}
+        <div className={`edge-torn-y absolute inset-0 ${hero.videoSrc ? "motion-safe:hidden" : ""}`}>
+          <Image src={hero.image.src} alt={hero.image.alt} fill priority quality={55} sizes="100vw" className="object-cover" />
+        </div>
+      </div>
+
+      <div className="container-edit">
+        <div className="mt-8 flex items-start gap-3 rounded-sm bg-sand-100 px-5 py-4 text-sm text-ink md:items-center">
+          <span className="pill shrink-0 border-lagoon-500 text-lagoon-500">
+            <Icon name="check" size={13} strokeWidth={2.2} /> {t("Included")}
           </span>
-          <p className="max-w-3xl">{t(site.promo)}</p>
-          <Icon name="check" size={18} className="ml-auto hidden shrink-0 md:block" />
+          <p className="max-w-3xl leading-relaxed">{t(site.promo)}</p>
         </div>
       </div>
     </section>

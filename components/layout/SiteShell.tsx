@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Newsreader, Source_Sans_3 } from "next/font/google";
 import { site } from "@/data/site";
 import { ogLocale } from "@/lib/i18n/config";
 import { CurrencyProvider } from "@/lib/currency";
@@ -16,18 +16,17 @@ import { I18nProvider } from "@/components/i18n/I18nProvider";
 import type { Locale } from "@/lib/i18n/config";
 import { clientMessages, setLocale, t } from "@/lib/i18n/server";
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
   axes: ["opsz"],
-  variable: "--font-fraunces",
+  variable: "--font-newsreader",
   display: "swap",
-  // Preloaded: the hero heading is set in it, and a late swap reflowed the hero
-  // copy (CLS 0.12 on mobile). Size-adjusted fallback metrics cover the rest.
+  // Preloaded: the hero heading is set in it; a late swap would reflow the hero copy.
   preload: true,
 });
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const sourceSans = Source_Sans_3({ subsets: ["latin"], variable: "--font-source-sans", display: "swap" });
 
 /** Site-wide metadata defaults for one locale's root layout. */
 export function shellMetadata(locale: Locale): Metadata {
@@ -46,7 +45,7 @@ export function shellMetadata(locale: Locale): Metadata {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0f2e2a",
+  themeColor: "#24382f",
 };
 
 /** The page shell (html, header, footer, overlays) shared by every locale's root layout. */
@@ -54,7 +53,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
   setLocale(locale);
   const searchIndex = buildSearchIndex();
   return (
-    <html lang={locale} className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang={locale} className={`${newsreader.variable} ${sourceSans.variable}`}>
       {/* eslint-disable-next-line @next/next/no-head-element -- root layout shell */}
       <head>
         {/* Open the connection to the photo CDN early, before the first image is requested. */}

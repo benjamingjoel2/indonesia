@@ -5,15 +5,15 @@ import { t } from "@/lib/i18n/server";
 
 export function AnnouncementBar() {
   return (
-    <div className="bg-jungle-950 text-sand-100">
-      <div className="container-edit flex min-h-9 flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-[0.75rem] sm:justify-between">
+    <div className="bg-jungle-900 text-paper">
+      <div className="container-edit flex min-h-9 flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-[0.8125rem] font-semibold sm:justify-between">
         <p className="hidden sm:block">
-          <span aria-hidden="true" className="mr-2 text-sand-400">✦</span>
+          <span aria-hidden="true" className="mr-2 text-lagoon-300">✦</span>
           {t(site.tagline)}
         </p>
         <Link href="/plan-your-trip" className="inline-flex items-center gap-1.5 underline-offset-4 hover:underline">
           {t(site.replyPromise)}
-          <Icon name="arrow" size={14} />
+          <Icon name="arrowUpRight" size={14} strokeWidth={2} />
         </Link>
       </div>
     </div>
