@@ -63,7 +63,7 @@ export function BrochureSignup({ compact = false }: { compact?: boolean }) {
               </div>
             ) : (
               <>
-                <p className="eyebrow text-lagoon-500">{t(b.subtitle)}</p>
+                <p className="eyebrow text-clay-500">{t(b.subtitle)}</p>
                 <Heading id={`${id}-title`} size="md" className="mt-3">
                   {t("Download *The Indonesia Edit*")}
                 </Heading>

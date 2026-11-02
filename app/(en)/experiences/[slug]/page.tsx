@@ -55,7 +55,7 @@ export default async function ExperiencePage({ params }: Props) {
           { label: e.name, href: `/experiences/${e.slug}` },
         ]}
       >
-        <PlanButton variant="light" arrow>
+        <PlanButton arrow>
           {t("Start planning")}
         </PlanButton>
       </PageHero>

@@ -100,21 +100,23 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section labelledBy="journeys-title">
+      <Section tone="dark" labelledBy="journeys-title">
         <SectionHeader
           id="journeys-title"
+          eyebrow={t("Explore our journeys")}
           heading={home.journeys.heading}
           intro={home.journeys.intro}
           link={{ href: "/trips", label: t("All trips") }}
+          tone="dark"
         />
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
           {journeys.map((it) => (
             <ItineraryCard key={it.slug} it={it} />
           ))}
         </div>
       </Section>
 
-      <Section tone="sand" labelledBy="stays-title" className="!bg-sand-50">
+      <Section labelledBy="stays-title">
         <SectionHeader
           id="stays-title"
           heading={home.stays.heading}

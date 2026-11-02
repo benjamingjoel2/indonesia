@@ -18,7 +18,7 @@ export function emphasize(text: string): ReactNode {
   const parts = text.split(/(\*[^*]+\*)/g);
   return parts.map((part, i) =>
     part.startsWith("*") && part.endsWith("*") ? (
-      <em key={i} className="font-display italic font-light">
+      <em key={i} className="font-display italic">
         {part.slice(1, -1)}
       </em>
     ) : (
@@ -44,15 +44,12 @@ export function Heading({
   id?: string;
 }) {
   return (
-    <Tag
-      id={id}
-      className={`font-display font-normal tracking-[-0.015em] ${sizeClass[size]} ${className}`}
-    >
+    <Tag id={id} className={`font-display font-medium ${sizeClass[size]} ${className}`}>
       {emphasize(children)}
     </Tag>
   );
 }
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <p className={`eyebrow text-lagoon-500 ${className}`}>{children}</p>;
+  return <p className={`eyebrow text-clay-500 ${className}`}>{children}</p>;
 }

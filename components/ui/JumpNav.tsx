@@ -32,7 +32,7 @@ export function JumpNav({ items, cta }: { items: { id: string; label: string }[]
                 <a
                   href={`#${i.id}`}
                   aria-current={active === i.id ? "true" : undefined}
-                  className="inline-block border-b-2 border-transparent px-3 py-4 text-sm text-ink-soft hover:text-ink aria-[current=true]:border-jungle-900 aria-[current=true]:text-ink"
+                  className="inline-block border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-ink-soft hover:text-ink aria-[current=true]:border-lagoon-500 aria-[current=true]:text-ink"
                 >
                   {i.label}
                 </a>
@@ -41,7 +41,7 @@ export function JumpNav({ items, cta }: { items: { id: string; label: string }[]
           </ul>
         </nav>
         <div className="hidden shrink-0 md:block">
-          <PlanButton className="!min-h-9 !py-2 text-sm">{cta ?? t("Start planning")}</PlanButton>
+          <PlanButton className="!min-h-9 !px-4 !py-2 text-sm" arrow>{cta ?? t("Start planning")}</PlanButton>
         </div>
       </div>
     </div>

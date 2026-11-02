@@ -32,7 +32,7 @@ export default function ContactPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             {[{ city: t("Office"), lines: addressLines }].map((o) => (
               <address key={o.city} className="not-italic">
-                <p className="eyebrow text-lagoon-500">{o.city}</p>
+                <p className="eyebrow text-clay-500">{o.city}</p>
                 <p className="mt-2 flex gap-2 leading-relaxed text-ink-soft">
                   <Icon name="pin" size={18} className="mt-1 shrink-0" />
                   <span>

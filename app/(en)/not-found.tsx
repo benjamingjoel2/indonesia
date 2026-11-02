@@ -5,7 +5,7 @@ import { t } from "@/lib/i18n/server";
 export default function NotFound() {
   return (
     <section className="container-edit py-32 text-center">
-      <p className="eyebrow text-lagoon-500">404</p>
+      <p className="eyebrow text-clay-500">404</p>
       <Heading as="h1" size="xl" className="mt-4">
         {t("This island isn't on our *map*.")}
       </Heading>

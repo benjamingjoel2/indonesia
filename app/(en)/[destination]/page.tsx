@@ -86,11 +86,11 @@ export default async function DestinationPage({ params }: Props) {
         ]}
       >
         {trips.length > 0 && (
-          <a href="#trips" className={buttonClass("light")}>
+          <a href="#trips" className={buttonClass("primary")}>
             {t("Explore the trips")}
           </a>
         )}
-        <a href={stays.length ? "#stays" : "#when-to-go"} className={buttonClass("outline-light")}>
+        <a href={stays.length ? "#stays" : "#when-to-go"} className={buttonClass("secondary")}>
           {stays.length ? t("Where to stay") : t("When to go")}
         </a>
       </PageHero>
@@ -117,7 +117,7 @@ export default async function DestinationPage({ params }: Props) {
             ))}
           </ul>
           <div className="mt-12 rounded-sm bg-sand-100 p-6">
-            <p className="eyebrow text-lagoon-500">{t("Getting there")}</p>
+            <p className="eyebrow text-clay-500">{t("Getting there")}</p>
             <p className="mt-2 leading-relaxed">{d.gettingThere}</p>
           </div>
         </div>

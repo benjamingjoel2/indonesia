@@ -4,15 +4,16 @@ import { Icon } from "./Icon";
 
 type Variant = "primary" | "secondary" | "ghost" | "light" | "outline-light";
 
+/** Pill buttons: filled forest green by default, outlined for secondary actions. */
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-[0.8125rem] font-medium leading-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 min-h-11";
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.9375rem] font-semibold leading-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 min-h-12";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-jungle-900 text-sand-50 hover:bg-jungle-700",
-  secondary: "border border-jungle-900 text-jungle-900 hover:bg-jungle-900 hover:text-sand-50",
-  ghost: "text-jungle-900 hover:bg-sand-200",
-  light: "bg-sand-50 text-jungle-900 hover:bg-sand-200",
-  "outline-light": "border border-sand-50/70 text-sand-50 hover:bg-sand-50 hover:text-jungle-900",
+  primary: "bg-lagoon-500 text-white hover:bg-jungle-900",
+  secondary: "border border-ink text-ink hover:bg-ink hover:text-paper",
+  ghost: "text-ink hover:bg-sand-200",
+  light: "bg-paper text-ink hover:bg-sand-200",
+  "outline-light": "border border-paper/60 text-paper hover:bg-paper hover:text-ink",
 };
 
 export const buttonClass = (variant: Variant = "primary", extra = "") =>
@@ -22,7 +23,7 @@ function Inner({ children, arrow }: { children: ReactNode; arrow?: boolean }) {
   return (
     <>
       <span>{children}</span>
-      {arrow && <Icon name="arrow" size={16} />}
+      {arrow && <Icon name="arrowUpRight" size={16} strokeWidth={2} />}
     </>
   );
 }
@@ -55,16 +56,16 @@ export function LinkButton({
   );
 }
 
-/** Text link with trailing arrow: "All destinations →" */
+/** Text link with trailing arrow: "All destinations ↗" */
 export function ArrowLink({
   className = "",
   children,
   ...props
 }: ComponentProps<typeof Link>) {
   return (
-    <Link className={`link-arrow ${className}`} {...props}>
+    <Link className={`link-arrow font-semibold ${className}`} {...props}>
       {children}
-      <Icon name="arrow" size={16} />
+      <Icon name="arrowUpRight" size={16} strokeWidth={2} />
     </Link>
   );
 }

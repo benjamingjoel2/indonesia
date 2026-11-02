@@ -88,7 +88,7 @@ export default async function StayPage({ params }: Props) {
         </div>
         <aside aria-label={t("Rates")}>
           <div className="rounded-sm border border-sand-300 bg-sand-50 p-6 lg:sticky lg:top-28">
-            <p className="eyebrow text-lagoon-500">{t(tierLabel[s.tier])}</p>
+            <p className="eyebrow text-clay-500">{t(tierLabel[s.tier])}</p>
             <p className="mt-3 text-sm text-ink-soft">{t("From")}</p>
             <p className="font-display text-display-md">
               <Price usd={s.priceFromUSD} />
