@@ -105,11 +105,11 @@ export function Header() {
       }`}
       onMouseLeave={hoverClose}
     >
-      <div className="container-edit flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
+      <div className="container-edit flex h-16 items-center justify-between gap-2 md:gap-3 lg:gap-4 xl:gap-6 lg:h-[4.5rem]">
         <Logo />
 
         <nav aria-label={t("Main")} className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0 xl:gap-1">
             {tx(mainNav).map((item) =>
               item.kind === "link" ? (
                 <li key={item.label}>
@@ -117,7 +117,7 @@ export function Header() {
                     href={item.href}
                     onMouseEnter={hoverClose}
                     aria-current={isActive(item.href) ? "page" : undefined}
-                    className="inline-flex h-10 items-center rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100 aria-[current=page]:text-lagoon-500"
+                    className="inline-flex h-10 items-center rounded-full px-2.5 text-sm font-semibold text-ink hover:bg-sand-100 aria-[current=page]:text-lagoon-500 xl:px-3.5 xl:text-[0.9375rem]"
                   >
                     {item.label}
                   </Link>
@@ -132,7 +132,7 @@ export function Header() {
                     onClick={() =>
                       setOpenMenu((m) => (m === item.kind ? null : (item.kind as MenuKind)))
                     }
-                    className="inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100 aria-expanded:bg-sand-100"
+                    className="inline-flex h-10 items-center gap-1 rounded-full px-2.5 text-sm font-semibold text-ink hover:bg-sand-100 aria-expanded:bg-sand-100 xl:px-3.5 xl:text-[0.9375rem]"
                   >
                     {item.label}
                     <Icon
@@ -148,7 +148,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onMouseEnter={hoverClose}
-                className="inline-flex h-10 items-center rounded-full px-3.5 text-[0.9375rem] font-semibold text-ink hover:bg-sand-100"
+                className="inline-flex h-10 items-center rounded-full px-2.5 text-sm font-semibold text-ink hover:bg-sand-100 xl:px-3.5 xl:text-[0.9375rem]"
               >
                 {t("Contact")}
               </Link>
@@ -166,8 +166,8 @@ export function Header() {
           >
             <Icon name="search" />
           </button>
-          <LanguageSelector className="hidden px-1 text-xs lg:block" />
-          <div className="hidden lg:block">
+          <LanguageSelector className="hidden px-1 text-xs xl:block" />
+          <div className="hidden xl:block">
             <CurrencySwitcher id="currency-desktop" />
           </div>
           <div className="hidden sm:block">
