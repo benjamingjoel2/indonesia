@@ -17,8 +17,8 @@ import { ItineraryCard } from "@/components/cards/ItineraryCard";
 import { StayCard } from "@/components/cards/StayCard";
 import { EnquiryForm } from "@/components/sections/EnquiryForm";
 import { Gallery } from "@/components/sections/Gallery";
-import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { PageHero } from "@/components/sections/PageHero";
+import { RouteStops } from "@/components/sections/RouteStops";
 import { Heading } from "@/components/ui/Heading";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -128,7 +128,7 @@ export default async function TripPage({ params }: Props) {
               ))}
             </ul>
             <div className="mt-10">
-              <MapPlaceholder stops={it.destinations} />
+              <RouteStops stops={it.destinations} />
             </div>
           </section>
 

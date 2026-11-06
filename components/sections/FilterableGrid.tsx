@@ -99,7 +99,7 @@ export function FilterableGrid({
             <p id={`facet-${f.id}`} className="eyebrow w-28 shrink-0 text-ink-soft">
               {f.label}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
               {f.options.map((o) => {
                 const on = (selected[f.id] ?? []).includes(o.value);
                 return (
@@ -108,8 +108,8 @@ export function FilterableGrid({
                     type="button"
                     aria-pressed={on}
                     onClick={() => toggle(f.id, o.value)}
-                    className={`inline-flex min-h-9 items-center gap-1.5 rounded-full border px-4 text-sm transition-colors ${
-                      on ? "border-jungle-900 bg-jungle-900 text-sand-50" : "border-sand-400 hover:border-jungle-900"
+                    className={`inline-flex min-h-9 items-center gap-1.5 border-b-2 text-sm transition-colors ${
+                      on ? "border-jungle-900 font-semibold text-ink" : "border-transparent text-ink-soft hover:text-ink"
                     }`}
                   >
                     {on && <Icon name="check" size={13} />}

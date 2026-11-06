@@ -1,27 +1,13 @@
-import Image from "next/image";
 import Link from "@/components/i18n/Link";
 import { addressLines, footerColumns, legalLinks, site } from "@/data/site";
-import { home } from "@/data/home";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
 import { t, tx } from "@/lib/i18n/server";
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const band = home.hero.image;
   return (
     <footer className="bg-paper text-ink">
-      {/* Brand band: the name in giant serif over a torn-edge photo, as on the reference. */}
-      <div aria-hidden="true" className="container-edit relative isolate overflow-hidden pt-16 md:pt-24">
-        <p className="relative z-10 font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-none">{site.name}</p>
-        <div className="edge-torn-y relative -z-10 -mt-6 h-64 md:-mt-14 md:h-[28rem]">
-          <Image src={band.src} alt="" fill sizes="100vw" className="object-cover" loading="lazy" />
-        </div>
-        <p className="relative z-10 -mt-8 text-right font-display text-[clamp(2rem,6vw,5rem)] font-medium leading-none md:-mt-16">
-          {t("Tailor-made Indonesia")}
-        </p>
-      </div>
-
       <div className="container-edit py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2.7fr]">
           {/* Brand block */}
